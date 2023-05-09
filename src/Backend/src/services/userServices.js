@@ -6,7 +6,7 @@ function validateConfirmPassword(password, confirmPassword) {
     if (password !== confirmPassword) {
         throw {
             type: "unauthorized",
-            message: "A senha e a confirmação de senha devem ser iguais",
+            message: "A confirmação de senha não confere com a senha digitada",
         };
     }
 
@@ -32,7 +32,7 @@ function validateNewUsername(username) {
     if (user) {
         throw {
             type: "conflict",
-            message: "Esse username já está sendo utilizado",
+            message: "Esse nome de usuário já está sendo utilizado",
         };
     }
 
@@ -51,11 +51,11 @@ function insertUser(user) {
 function validatePassword(userBody) {
     const userDatabase = findByEmail(userBody.email);
 
-    if (
-        !userDatabase ||
-        !bcrypt.compare(userBody.password, userDatabase.password)
-    ) {
-        throw { type: "unauthorized", message: "Credenciais inválidas" };
+    if (!bcrypt.compare(userBody.password, userDatabase.password)) {
+        throw {
+            type: "unauthorized",
+            message: "Senha incorreta",
+        };
     }
 
     return userDatabase;
@@ -75,8 +75,8 @@ function validateUserExists(userId) {
 
     if (!user) {
         throw {
-            type: "not found",
-            message: "Não encontramos um usuário com esse id.",
+            type: "notFound",
+            message: "Usuário não encontrado",
         };
     }
 
@@ -87,22 +87,6 @@ function getUsernameById(userId) {
     return userRepositories.getUsernameById(userId);
 }
 
-function getUsersByInput(input) {
-    const users = userRepositories.getAllUsers();
-
-    const usersByInput = users.filter((user) => {
-        const lowerCaseUser = user.username.toLowerCase();
-
-        return lowerCaseUser.startsWith(input);
-    });
-
-    const usersByInputNoPassword = usersByInput.map((user) => {
-        return { id: user.id, username: user.username };
-    });
-
-    return usersByInputNoPassword;
-}
-
 function encryptsPassword(password) {
     const SALT = 10;
     const encryptedPassword = bcrypt.hash(password, SALT);
@@ -111,7 +95,16 @@ function encryptsPassword(password) {
 }
 
 function findByEmail(email) {
-    return userRepositories.findByEmail(email);
+    const user = userRepositories.findByEmail(email);
+
+    if (!user) {
+        throw {
+            type: "notFound",
+            message: "Usuário não encontrado",
+        };
+    }
+
+    return user;
 }
 
 module.exports = {
@@ -123,6 +116,5 @@ module.exports = {
     generateToken,
     validateUserExists,
     getUsernameById,
-    getUsersByInput,
     findByEmail,
 };
