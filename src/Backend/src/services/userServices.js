@@ -1,8 +1,8 @@
-import * as userRepositories from "../repositories/userRepository";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+const userRepositories = require("../repositories/userRepositories.js");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
-export function validateConfirmPassword(password, confirmPassword) {
+function validateConfirmPassword(password, confirmPassword) {
     if (password !== confirmPassword) {
         throw {
             type: "unauthorized",
@@ -13,8 +13,8 @@ export function validateConfirmPassword(password, confirmPassword) {
     return true;
 }
 
-export async function validateNewEmail(email) {
-    const user = await findByEmail(email);
+function validateNewEmail(email) {
+    const user = findByEmail(email);
 
     if (user) {
         throw {
@@ -26,8 +26,8 @@ export async function validateNewEmail(email) {
     return true;
 }
 
-export async function validateNewUsername(username) {
-    const user = await userRepositories.findByUsername(username);
+function validateNewUsername(username) {
+    const user = userRepositories.findByUsername(username);
 
     if (user) {
         throw {
@@ -39,21 +39,21 @@ export async function validateNewUsername(username) {
     return true;
 }
 
-export async function insertUser(user) {
+function insertUser(user) {
     const encryptedUser = {
         ...user,
-        password: await encryptsPassword(user.password),
+        password: encryptsPassword(user.password),
     };
 
-    return await userRepositories.insertUser(encryptedUser);
+    return userRepositories.insertUser(encryptedUser);
 }
 
-export async function validatePassword(userBody) {
-    const userDatabase = await findByEmail(userBody.email);
+function validatePassword(userBody) {
+    const userDatabase = findByEmail(userBody.email);
 
     if (
         !userDatabase ||
-        !(await bcrypt.compare(userBody.password, userDatabase.password))
+        !bcrypt.compare(userBody.password, userDatabase.password)
     ) {
         throw { type: "unauthorized", message: "Credenciais inválidas" };
     }
@@ -61,8 +61,8 @@ export async function validatePassword(userBody) {
     return userDatabase;
 }
 
-export async function generateToken(email) {
-    const user = await findByEmail(email);
+function generateToken(email) {
+    const user = findByEmail(email);
 
     const secretKey = String(process.env.JWT_SECRET);
     const token = user ? jwt.sign({ id: user.id }, secretKey) : "";
@@ -70,8 +70,8 @@ export async function generateToken(email) {
     return token;
 }
 
-export async function validateUserExists(userId) {
-    const user = await userRepositories.findById(userId);
+function validateUserExists(userId) {
+    const user = userRepositories.findById(userId);
 
     if (!user) {
         throw {
@@ -83,12 +83,12 @@ export async function validateUserExists(userId) {
     return true;
 }
 
-export async function getUsernameById(userId) {
-    return await userRepositories.getUsernameById(userId);
+function getUsernameById(userId) {
+    return userRepositories.getUsernameById(userId);
 }
 
-export async function getUsersByInput(input) {
-    const users = await userRepositories.getAllUsers();
+function getUsersByInput(input) {
+    const users = userRepositories.getAllUsers();
 
     const usersByInput = users.filter((user) => {
         const lowerCaseUser = user.username.toLowerCase();
@@ -103,13 +103,26 @@ export async function getUsersByInput(input) {
     return usersByInputNoPassword;
 }
 
-async function encryptsPassword(password) {
+function encryptsPassword(password) {
     const SALT = 10;
-    const encryptedPassword = await bcrypt.hash(password, SALT);
+    const encryptedPassword = bcrypt.hash(password, SALT);
 
     return encryptedPassword;
 }
 
-export async function findByEmail(email) {
-    return await userRepositories.findByEmail(email);
+function findByEmail(email) {
+    return userRepositories.findByEmail(email);
 }
+
+module.exports = {
+    validateConfirmPassword,
+    validateNewEmail,
+    validateNewUsername,
+    insertUser,
+    validatePassword,
+    generateToken,
+    validateUserExists,
+    getUsernameById,
+    getUsersByInput,
+    findByEmail,
+};

@@ -1,5 +1,5 @@
-import express from "express";
-import userRouter from "./routers/userRouter.js";
+const express = require("express");
+const userRouter = require("./routers/userRouter.js");
 
 const hostname = "127.0.0.1";
 const port = 3000;

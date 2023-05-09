@@ -1,11 +1,11 @@
-import bodyParser from "body-parser";
+const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-import { signIn, signUp } from "../controllers/userController";
+const { signIn, signUp } = require("../controllers/userController.js");
+const { Router } = require("express");
 
-import { Router } from "express";
 const router = Router();
 
 router.post("/sign-up", urlencodedParser, signUp);
 router.post("/sign-in", urlencodedParser, signIn);
 
-export default router;
+module.exports = router;

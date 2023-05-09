@@ -1,6 +1,6 @@
-import * as userServices from "../services/userServices.js";
+const userServices = require("../services/userServices.js");
 
-export async function signUp(req, res) {
+function signUp(req, res) {
     const user = {
         email: req.body.email,
         password: req.body.password,
@@ -9,9 +9,9 @@ export async function signUp(req, res) {
     const confirmPassword = req.body.confirmPassword;
 
     userServices.validateConfirmPassword(user.password, confirmPassword);
-    await userServices.validateNewEmail(user.email);
-    await userServices.validateNewUsername(user.username);
-    const createdUser = await userServices.insertUser(user);
+    userServices.validateNewEmail(user.email);
+    userServices.validateNewUsername(user.username);
+    const createdUser = userServices.insertUser(user);
 
     res.status(201).send({
         id: createdUser.id,
@@ -20,11 +20,16 @@ export async function signUp(req, res) {
     });
 }
 
-export async function signIn(req, res) {
+function signIn(req, res) {
     const user = req.body;
 
-    const { id } = await userServices.validatePassword(user);
-    const token = await userServices.generateToken(user.email);
+    const { id } = userServices.validatePassword(user);
+    const token = userServices.generateToken(user.email);
 
     res.status(200).send({ id, token });
 }
+
+module.exports = {
+    signUp,
+    signIn,
+};

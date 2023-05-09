@@ -1,4 +1,4 @@
-import database from "../database/databaseConnection.js";
+const database = require("../database/databaseConnection.js");
 
 function findByEmail(email) {
     const query = "SELECT * FROM Professores WHERE email = ?";

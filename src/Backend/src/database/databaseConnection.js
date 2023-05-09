@@ -3,4 +3,4 @@ const DBPATH = "./database.db";
 
 const databaseConnection = new sqlite3.Database(DBPATH);
 
-export default databaseConnection;
+module.exports = databaseConnection;
