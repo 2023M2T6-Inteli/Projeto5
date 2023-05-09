@@ -1,21 +1,21 @@
 const database = require("../database/databaseConnection.js");
 
-function findByEmail(email) {
+async function findByEmail(email) {
     const query = "SELECT * FROM Professores WHERE email = ?";
-    const [user] = database.all(query, [email]);
+    const [user] = await database.all(query, [email]);
     return user;
 }
 
-function findByUsername(nome) {
+async function findByUsername(nome) {
     const query = "SELECT * FROM Professores WHERE nome = ?";
-    const [user] = database.all(query, [nome]);
+    const [user] = await database.all(query, [nome]);
     return user;
 }
 
-function insertUser(user) {
+async function insertUser(user) {
     const query =
         "INSERT INTO Professores (nome, email, senha) VALUES (?, ?, ?)";
-    const result = database.run(query, [
+    const result = await database.run(query, [
         user.username,
         user.email,
         user.password,
@@ -23,21 +23,21 @@ function insertUser(user) {
     return findByUsername(user.username);
 }
 
-function findById(userId) {
+async function findById(userId) {
     const query = "SELECT * FROM Professores WHERE id = ?";
-    const [user] = database.all(query, [userId]);
+    const [user] = await database.all(query, [userId]);
     return user;
 }
 
-function getUsernameById(userId) {
-    const user = findById(userId);
-    return user ? user.username : undefined;
+async function getUsernameById(userId) {
+    const user = await findById(userId);
+    return user ? user.nome : undefined;
 }
 
-function getAllProfessores() {
+async function getAllProfessores() {
     const query = "SELECT * FROM Professores";
-    const Professores = database.all(query);
-    return Professores;
+    const professores = await database.all(query);
+    return professores;
 }
 
 module.exports = {
