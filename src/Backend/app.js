@@ -23,7 +23,7 @@ app.post("/updateTurma", urlencodedParser, postUpdateTurmas);
 app.delete("/removeTurma", urlencodedParser, removeTurmas);
 
 // rota professor + turma
-app.get("professorTurma", getProfessorTurma)
+app.get("/getProfessorTurma", getProfessorTurma)
 
 app.listen(port, hostname, () => {
     console.log(`Servidor rodando em http://${hostname}:${port}/`);
@@ -90,9 +90,9 @@ function getUpdateProfessores(req, res) {
 function postUpdateProfessores(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const database = new sqlite3.Database(DBPATH);
+    const databaseConnection = new sqlite3.Database(DBPATH);
 
-    database.serialize(() => {
+    databaseConnection.serialize(() => {
         const sqlQuery =
             "UPDATE Professores SET nome = ?, email = ?, senha = ? WHERE id = ?";
 
@@ -126,7 +126,7 @@ function removeProfessores(req, res) {
 
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery = "DELETE FROM Usuarios WHERE id= ?";
+    const sqlQuery = "DELETE FROM Professores WHERE id= ?";
 
     const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
     databaseConnection.run(sqlQuery, [req.query.userId], (err) => {
@@ -167,13 +167,13 @@ function insertTurmas(req, res) {
         }
     });
     res.write("<h1>Turma criada</h1>");
-    database.close()
+    databaseConnection.close()
     res.end()
 
 }
 
 function getUpdateTurmas(req, res) {
-    if (!req.query.userId) {
+    if (!req.query.turmaId) {
         res.statusCode = 400;
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.write("<h1>Usuario não encontrado</h1>");
@@ -183,7 +183,7 @@ function getUpdateTurmas(req, res) {
 
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery = "SELECT * FROM Turma WHERE id= ?";
+    const sqlQuery = "SELECT * FROM Turmas WHERE id= ?";
 
     const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
     databaseConnection.all(sqlQuery, [req.query.turmaId], (err, rows) => {
@@ -192,7 +192,7 @@ function getUpdateTurmas(req, res) {
         }
         res.json(rows);
     });
-    database.close(); // Fecha o banco
+    databaseConnection.close(); // Fecha o banco
 }
 
 function postUpdateTurmas(req, res) {
@@ -200,7 +200,7 @@ function postUpdateTurmas(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
     const databaseConnection = new sqlite3.Database(DBPATH);
 
-    database.serialize(() => {
+    databaseConnection.serialize(() => {
         const sqlQuery =
             "UPDATE Turmas SET titulo_turma = ?, professor_id = ? WHERE id = ?";
 
@@ -219,11 +219,11 @@ function postUpdateTurmas(req, res) {
         });
     });
 
-    database.close();
+    databaseConnection.close();
 }
 
 function removeTurmas(req, res) {
-    if (!req.query.userId) {
+    if (!req.query.turmaId) {
         res.statusCode = 400;
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.write("<h1>Turma não encontrada</h1>");
@@ -233,7 +233,7 @@ function removeTurmas(req, res) {
 
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery = "DELETE FROM Usuarios WHERE id= ?";
+    const sqlQuery = "DELETE FROM Turmas WHERE id= ?";
 
     const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
     databaseConnection.run(sqlQuery, [req.query.turmaId], (err) => {
@@ -251,7 +251,7 @@ function removeTurmas(req, res) {
 function getProfessorTurma(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery = "SELECT p.nome t.titulo_turma FROM Turmas as t JOIN Professores as p ON turma.professor_id = p.id";
+    const sqlQuery = "SELECT p.nome, t.titulo_turma FROM Turmas as t JOIN Professores as p ON t.professor_id = p.id";
 
     const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
     databaseConnection.all(sqlQuery, [], (err, rows) => {
@@ -259,6 +259,6 @@ function getProfessorTurma(req, res) {
             throw err;
         }
         res.json(rows);
+        databaseConnection.close(); // fecha a conexão dentro do callback
     });
-    databaseConnection.close();
 }
