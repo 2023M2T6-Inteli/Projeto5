@@ -1,20 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
-const sqlite3 = require("sqlite3").verbose();
 const databaseConnection = require("./middlewares/databaseConnection");
 const hostname = "127.0.0.1";
 const port = 3000;
 const app = express();
 app.use(express.json());
+const teacherRoute = require("./routes/teacher");
 app.use(databaseConnection);
 
-// rotas professores
-app.post("/insertProfessor", urlencodedParser, insertProfessores);
-app.get("/getProfessores", getProfessores);
-app.get("/updateProfessor", getUpdateProfessores);
-app.post("/updateProfessor", urlencodedParser, postUpdateProfessores);
-app.delete("/removeProfessor", urlencodedParser, removeProfessores);
+app.use("/teacher", teacherRoute);
+
 
 // rotas turmas
 app.post("/insertTurma", urlencodedParser, insertTurmas);
@@ -23,110 +19,11 @@ app.get("/updateTurma", getUpdateTurmas);
 app.post("/updateTurma", urlencodedParser, postUpdateTurmas);
 app.delete("/removeTurma", urlencodedParser, removeTurmas);
 
-// rota professor + turma
-app.get("/getProfessorTurma", getProfessorTurma)
 
 app.listen(port, hostname, () => {
     console.log(`Servidor rodando em http://${hostname}:${port}/`);
 });
 
-// funcoes professores
-
-function getProfessores(req, res) {
-    res.statusCode = 200;
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery = "SELECT * FROM Professores ORDER BY id ASC";
-    req.db.all(sqlQuery, [], (err, rows) => {
-        if (err) {
-            throw err;
-        }
-        res.json(rows);
-    });
-}
-
-function insertProfessores(req, res) {
-    res.statusCode = 200;
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery =
-        "INSERT INTO Professores (nome, email, senha) VALUES (?, ?, ?)";
-
-    const params = [req.body.nome, req.body.email, req.body.senha];
-
-    req.db.run(sqlQuery, params, (err) => {
-        if (err) {
-            throw err;
-        }
-    });
-    res.write("<h1>Usuario criado</h1>");
-    res.end();
-}
-
-function getUpdateProfessores(req, res) {
-    if (!req.query.userId) {
-        res.statusCode = 400;
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.write("<h1>Usuario não encontrado</h1>");
-        res.end();
-        return;
-    }
-
-    res.statusCode = 200;
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery = "SELECT * FROM Professores WHERE id= ?"
-    req.db.all(sqlQuery, [req.query.userId], (err, rows) => {
-        if (err) {
-            throw err;
-        }
-        res.json(rows);
-    }); 
-}
-
-function postUpdateProfessores(req, res) {
-    res.statusCode = 200;
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
-    req.db.serialize(() => {
-        const sqlQuery =
-            "UPDATE Professores SET nome = ?, email = ?, senha = ? WHERE id = ?";
-
-        const params = [
-            req.body.nome,
-            req.body.email,
-            req.body.senha,
-            req.query.userId,
-        ];
-
-        req.db.run(sqlQuery, params, (err) => {
-            if (err) {
-                throw err;
-            }
-            res.write("<h1>Usuario atualizado</h1>");
-            res.end();
-        });
-    });
-
-}
-
-function removeProfessores(req, res) {
-    if (!req.query.userId) {
-        res.statusCode = 400;
-        res.setHeader("Access-Control-Allow-Origin", "*");
-        res.write("<h1>Usuario não encontrado</h1>");
-        res.end();
-        return;
-    }
-
-    res.statusCode = 200;
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery = "DELETE FROM Professores WHERE id= ?";
-    req.db.run(sqlQuery, [req.query.userId], (err) => {
-        if (err) {
-            throw err;
-        }
-        res.write("<h1>Usuario removido</h1>");
-        res.end();
-    }); 
-}
 
 // funcoes turmas
 
