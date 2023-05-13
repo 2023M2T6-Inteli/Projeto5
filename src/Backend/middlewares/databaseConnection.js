@@ -7,7 +7,7 @@ function databaseConnection(req, res, next) {
     }
 
   // open the connection with db
-  const db = new sqlite3.Database('./data/database.db');
+  const db = new sqlite3.Database('./data/database.sqlite');
 
   req.db = db;
 

@@ -2,11 +2,27 @@ const express = require("express");
 const app = express();
 const databaseConnection = require("../middlewares/databaseConnection");
 app.use(databaseConnection);
+const teacherModel = require("../models/teacherModel");
+
+async function getAll(req, res) {
+    res.statusCode = 200;
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    const result = await teacherModel.getAll(req.db);
+    res.json(result);
+}
 
 module.exports = {
-    getAll: (req, res) => {
+    /* getAll: (req, res) => {
         res.statusCode = 200;
         res.setHeader("Access-Control-Allow-Origin", "*");
+        teacherModel.getAll(req.db, (err, rows) => {
+            if (err) {
+                throw err;
+            }
+            res.send(rows);
+        });
+    }, */
+    /* 
         const sqlQuery = "SELECT * FROM Professores ORDER BY id ASC";
         req.db.all(sqlQuery, [], (err, rows) => {
             if (err) {
@@ -14,12 +30,13 @@ module.exports = {
             }
             res.json(rows);
         });
-    },
+    }, */
+    getAll,
     post: (req, res) => {
         res.statusCode = 200;
         res.setHeader("Access-Control-Allow-Origin", "*");
         const sqlQuery =
-            "INSERT INTO Professores (nome, email, senha) VALUES (?, ?, ?)";
+            "INSERT INTO teachers (name, email, password) VALUES (?, ?, ?)";
     
         const params = [req.body.nome, req.body.email, req.body.senha];
     
@@ -34,7 +51,7 @@ module.exports = {
     get: (req, res) => {
         res.statusCode = 200;
         res.setHeader("Access-Control-Allow-Origin", "*");
-        const sqlQuery = "SELECT * FROM Professores WHERE id= ?"
+        const sqlQuery = "SELECT * FROM teachers WHERE id= ?"
         req.db.all(sqlQuery, [req.params.teacher_id], (err, rows) => {
             if (err) {
                 throw err;

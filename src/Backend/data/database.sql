@@ -1,54 +1,62 @@
-CREATE TABLE Professores (
+CREATE TABLE teachers (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	nome text,
+	name text,
 	email text,
-	senha text
+	password text
 );
 
-CREATE TABLE Alunos (
+CREATE TABLE students (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	nome text,
-	turma_id integer,
-	numero_chamada integer
+	name text,
+	class_id integer,
+	call_number integer,
+	FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
-CREATE TABLE Turmas (
+CREATE TABLE classes (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	titulo_turma text,
-	professor_id integer
+	class_title text,
+	teacher_id integer,
+	FOREIGN KEY (teacher_id) REFERENCES teachers(id)
 );
 
-CREATE TABLE Alunos_Notas (
+CREATE TABLE student_grades (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	aluno_id integer,
-	aula_id integer,
-	nota1 integer,
-	nota2 integer,
-	nota3 integer,
-	nota4 integer,
-	nota5 integer
+	student_id integer,
+	class_id integer,
+	grade1 integer,
+	grade2 integer,
+	grade3 integer,
+	grade4 integer,
+	grade5 integer,
+	FOREIGN KEY (student_id) REFERENCES students(id),
+	FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
-CREATE TABLE Aulas (
+CREATE TABLE lessons (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	turma_id integer,
-	data date
+	class_id integer,
+	date date,
+	FOREIGN KEY (class_id) REFERENCES classes(id)
 );
 
-CREATE TABLE Alunos_Anotacoes (
-	id integer,
-	aluno_id integer,
-	anotacao text,
-	aula_id text
-);
-
-CREATE TABLE Códigos (
+CREATE TABLE student_notes (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	codigo text,
-	categoria_id integer
+	student_id integer,
+	note text,
+	lesson_id integer,
+	FOREIGN KEY (student_id) REFERENCES students(id),
+	FOREIGN KEY (lesson_id) REFERENCES lessons(id)
 );
 
-CREATE TABLE Categorias (
+CREATE TABLE codes (
 	id integer PRIMARY KEY AUTOINCREMENT,
-	titulo text
+	code text,
+	category_id integer,
+	FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+CREATE TABLE categories (
+	id integer PRIMARY KEY AUTOINCREMENT,
+	title text
 );
