@@ -2,11 +2,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const sqlite3 = require("sqlite3").verbose();
-const DBPATH = './backend/database/database.db';
+const databaseConnection = require("./middlewares/databaseConnection");
 const hostname = "127.0.0.1";
 const port = 3000;
 const app = express();
 app.use(express.json());
+app.use(databaseConnection);
 
 // rotas professores
 app.post("/insertProfessor", urlencodedParser, insertProfessores);
@@ -34,33 +35,29 @@ app.listen(port, hostname, () => {
 function getProfessores(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const databaseConnection = new sqlite3.Database(DBPATH);
     const sqlQuery = "SELECT * FROM Professores ORDER BY id ASC";
-    databaseConnection.all(sqlQuery, [], (err, rows) => {
+    req.db.all(sqlQuery, [], (err, rows) => {
         if (err) {
             throw err;
         }
         res.json(rows);
     });
-    databaseConnection.close();
 }
 
 function insertProfessores(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const databaseConnection = new sqlite3.Database(DBPATH);
     const sqlQuery =
         "INSERT INTO Professores (nome, email, senha) VALUES (?, ?, ?)";
 
     const params = [req.body.nome, req.body.email, req.body.senha];
 
-    databaseConnection.run(sqlQuery, params, (err) => {
+    req.db.run(sqlQuery, params, (err) => {
         if (err) {
             throw err;
         }
     });
     res.write("<h1>Usuario criado</h1>");
-    databaseConnection.close();
     res.end();
 }
 
@@ -76,23 +73,19 @@ function getUpdateProfessores(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
     const sqlQuery = "SELECT * FROM Professores WHERE id= ?"
-
-    const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
-    databaseConnection.all(sqlQuery, [req.query.userId], (err, rows) => {
+    req.db.all(sqlQuery, [req.query.userId], (err, rows) => {
         if (err) {
             throw err;
         }
         res.json(rows);
-    });
-    databaseConnection.close(); // Fecha o banco
+    }); 
 }
 
 function postUpdateProfessores(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const databaseConnection = new sqlite3.Database(DBPATH);
 
-    databaseConnection.serialize(() => {
+    req.db.serialize(() => {
         const sqlQuery =
             "UPDATE Professores SET nome = ?, email = ?, senha = ? WHERE id = ?";
 
@@ -103,7 +96,7 @@ function postUpdateProfessores(req, res) {
             req.query.userId,
         ];
 
-        databaseConnection.run(sqlQuery, params, (err) => {
+        req.db.run(sqlQuery, params, (err) => {
             if (err) {
                 throw err;
             }
@@ -112,7 +105,6 @@ function postUpdateProfessores(req, res) {
         });
     });
 
-    databaseConnection.close();
 }
 
 function removeProfessores(req, res) {
@@ -127,16 +119,13 @@ function removeProfessores(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
     const sqlQuery = "DELETE FROM Professores WHERE id= ?";
-
-    const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
-    databaseConnection.run(sqlQuery, [req.query.userId], (err) => {
+    req.db.run(sqlQuery, [req.query.userId], (err) => {
         if (err) {
             throw err;
         }
         res.write("<h1>Usuario removido</h1>");
         res.end();
-    });
-    databaseConnection.close(); // Fecha o banco
+    }); 
 }
 
 // funcoes turmas
@@ -144,30 +133,26 @@ function removeProfessores(req, res) {
 function getTurmas(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const databaseConnection = new sqlite3.Database(DBPATH);
     const sqlQuery = "SELECT * FROM Turmas ORDER BY id ASC";
-    databaseConnection.all(sqlQuery, [], (err, rows) => {
+    req.db.all(sqlQuery, [], (err, rows) => {
         if (err) {
             throw err;
         }
         res.json(rows);
     });
-    databaseConnection.close();
 }
 
 function insertTurmas(req, res) {
     res.statusCode = 500;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const databaseConnection = new sqlite3.Database(DBPATH);
     const sqlQuery = "INSERT INTO Turmas (titulo_turma, professor_id) VALUES (?, ?)";
     const params = [req.body.titulo_turma, req.body.professor_id];
-    databaseConnection.run(sqlQuery, params, (err) => {
+    req.db.run(sqlQuery, params, (err) => {
         if (err){
             throw err;
         }
     });
     res.write("<h1>Turma criada</h1>");
-    databaseConnection.close()
     res.end()
 
 }
@@ -184,23 +169,19 @@ function getUpdateTurmas(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
     const sqlQuery = "SELECT * FROM Turmas WHERE id= ?";
-
-    const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
-    databaseConnection.all(sqlQuery, [req.query.turmaId], (err, rows) => {
+    req.db.all(sqlQuery, [req.query.turmaId], (err, rows) => {
         if (err) {
             throw err;
         }
         res.json(rows);
-    });
-    databaseConnection.close(); // Fecha o banco
+    }); 
 }
 
 function postUpdateTurmas(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
-    const databaseConnection = new sqlite3.Database(DBPATH);
 
-    databaseConnection.serialize(() => {
+    req.db.serialize(() => {
         const sqlQuery =
             "UPDATE Turmas SET titulo_turma = ?, professor_id = ? WHERE id = ?";
 
@@ -210,7 +191,7 @@ function postUpdateTurmas(req, res) {
             req.query.turmaId
         ];
 
-        databaseConnection.run(sqlQuery, params, (err) => {
+        req.db.run(sqlQuery, params, (err) => {
             if (err) {
                 throw err;
             }
@@ -219,7 +200,6 @@ function postUpdateTurmas(req, res) {
         });
     });
 
-    databaseConnection.close();
 }
 
 function removeTurmas(req, res) {
@@ -234,16 +214,13 @@ function removeTurmas(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
     const sqlQuery = "DELETE FROM Turmas WHERE id= ?";
-
-    const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
-    databaseConnection.run(sqlQuery, [req.query.turmaId], (err) => {
+    req.db.run(sqlQuery, [req.query.turmaId], (err) => {
         if (err) {
             throw err;
         }
         res.write("<h1>Turma removida</h1>");
         res.end();
-    });
-    databaseConnection.close(); // Fecha o banco
+    }); 
 }
 
 // join professores e turma
@@ -252,13 +229,10 @@ function getProfessorTurma(req, res) {
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
     const sqlQuery = "SELECT p.nome, t.titulo_turma FROM Turmas as t JOIN Professores as p ON t.professor_id = p.id";
-
-    const databaseConnection = new sqlite3.Database(DBPATH); // Abre o banco
-    databaseConnection.all(sqlQuery, [], (err, rows) => {
+    req.db.all(sqlQuery, [], (err, rows) => {
         if (err) {
             throw err;
         }
         res.json(rows);
-        databaseConnection.close(); // fecha a conexão dentro do callback
     });
 }
