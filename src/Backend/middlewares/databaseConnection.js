@@ -1,6 +1,11 @@
 const sqlite3 = require('sqlite3').verbose();
 
 function databaseConnection(req, res, next) {
+    // verify if the connection already was req
+    if (req.db) {
+        return next();
+    }
+
   // open the connection with db
   const db = new sqlite3.Database('./data/database.db');
 
