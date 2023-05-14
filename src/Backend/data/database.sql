@@ -23,7 +23,7 @@ CREATE TABLE classes (
 CREATE TABLE student_grades (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	student_id integer,
-	class_id integer,
+	lesson_id integer,
 	grade1 integer,
 	grade2 integer,
 	grade3 integer,
