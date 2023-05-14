@@ -30,7 +30,7 @@ CREATE TABLE student_grades (
 	grade4 integer,
 	grade5 integer,
 	FOREIGN KEY (student_id) REFERENCES students(id),
-	FOREIGN KEY (class_id) REFERENCES classes(id)
+	FOREIGN KEY (lesson_id) REFERENCES lessons(id)
 );
 
 CREATE TABLE lessons (
