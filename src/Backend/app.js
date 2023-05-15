@@ -10,16 +10,12 @@ const teacherRoute = require("./routes/teacher");
 const classRoute = require("./routes/class")
 app.use(databaseConnection);
 
-
-
 app.use("/teacher", teacherRoute);
 app.use("/class", classRoute)
-
-
-
 
 app.listen(port, hostname, () => {
     console.log(`Servidor rodando em http://${hostname}:${port}/`);
 });
+
 
 
