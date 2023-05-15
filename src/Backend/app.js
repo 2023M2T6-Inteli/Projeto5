@@ -23,18 +23,3 @@ app.listen(port, hostname, () => {
 });
 
 
-
-
-// join professores e turma
-
-function getProfessorTurma(req, res) {
-    res.statusCode = 200;
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    const sqlQuery = "SELECT p.nome, t.titulo_turma FROM Turmas as t JOIN Professores as p ON t.professor_id = p.id";
-    req.db.all(sqlQuery, [], (err, rows) => {
-        if (err) {
-            throw err;
-        }
-        res.json(rows);
-    });
-}

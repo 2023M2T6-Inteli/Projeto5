@@ -62,10 +62,24 @@ return new Promise((resolve, reject) => {
 })
 }
 
+function getTeachers(db){
+    console.log("model");
+    return new Promise((resolve, reject) => {
+        const sqlQuery = "SELECT c.class_title, t.name as teacher FROM classes as c JOIN teachers as t ON c.teacher_id = t.id";
+        db.all(sqlQuery, (err, rows) => {
+            if(err){
+                reject(err);
+            }
+            resolve(rows);
+        });
+    });
+}
+
 module.exports = {
     getAll,
     post,
     get,
     put,
-    remove
+    remove,
+    getTeachers
 }

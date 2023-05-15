@@ -39,6 +39,12 @@ async function remove(req, res) {
     res.json(result)
 }
 
+async function getTeachers(req, res) {
+    res.statusCode = 200;
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    const result = await classModel.getTeachers(req.db);
+    res.json(result);
+}
 
 
 module.exports = {
@@ -46,7 +52,8 @@ module.exports = {
     post,
     get,
     put,
-    remove
+    remove,
+    getTeachers
 }
 
 
