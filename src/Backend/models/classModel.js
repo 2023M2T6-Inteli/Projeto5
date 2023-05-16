@@ -13,7 +13,7 @@ function getAll(db){
 
 function post(db, params){
     return new Promise((resolve, reject) => {
-        db.run("INSERT INTO classes (class_title, teacher_id) VALUES (?, ?)",params , (err) => {
+        db.run("INSERT INTO classes (class_title, teacher_id) VALUES (?, ?)", params , (err) => {
             if (err) {
                 reject(err);
             } else {
