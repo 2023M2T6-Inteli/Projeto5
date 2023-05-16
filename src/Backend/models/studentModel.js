@@ -2,7 +2,7 @@ const db = require('sqlite3');
 
 function getAll(db){
     return new Promise((resolve, reject) => {
-        db.all('SELECT * FROM classes ORDER BY id ASC', (err, rows) => {
+        db.all('SELECT * FROM students ORDER BY id ASC', (err, rows) => {
             if(err){
                 reject(err);
             }
@@ -13,7 +13,7 @@ function getAll(db){
 
 function post(db, params){
     return new Promise((resolve, reject) => {
-        db.run("INSERT INTO classes (class_title, teacher_id) VALUES (?, ?)", params , (err) => {
+        db.run("INSERT INTO students (name, class_id, call_number) VALUES (?, ?, ?)", params , (err) => {
             if (err) {
                 reject(err);
             } else {
@@ -23,9 +23,9 @@ function post(db, params){
     })
 }
 
-function get(db, class_id){
+function get(db, student_id){
     return new Promise((resolve, reject) => {
-        db.all('SELECT * FROM classes WHERE id= ?', [class_id], (err, rows) => {
+        db.all('SELECT * FROM students WHERE id= ?', [student_id], (err, rows) => {
             if(err){
                 reject(err);
             }
@@ -38,41 +38,28 @@ function put(db, params) {
     return new Promise((resolve, reject) => {
       db.serialize(() => {
         const sqlQuery =
-          "UPDATE classes SET class_title = ?, teacher_id = ? WHERE id = ?";
+          "UPDATE students SET name = ?, class_id = ?, call_number = ? WHERE id = ?";
   
         db.run(sqlQuery, params, (err) => {
           if (err) {
             reject(err);
           } else {
-            resolve("Turma atualizada");
+            resolve("Usuário atualizado");
           }
         });
       });
     });
   }
 
-function remove(db, class_id){
+function remove(db, student_id){
 return new Promise((resolve, reject) => {
-    db.all('DELETE FROM classes WHERE id= ?', [class_id], (err, rows) => {
+    db.all('DELETE FROM students WHERE id= ?', [student_id], (err, rows) => {
         if(err){
             reject(err);
         }
-        resolve("Turma deletada");
+        resolve("Usuário deletado");
     })
 })
-}
-
-function getTeachers(db){
-    console.log("model");
-    return new Promise((resolve, reject) => {
-        const sqlQuery = "SELECT c.class_title, t.name as teacher FROM classes as c JOIN teachers as t ON c.teacher_id = t.id";
-        db.all(sqlQuery, (err, rows) => {
-            if(err){
-                reject(err);
-            }
-            resolve(rows);
-        });
-    });
 }
 
 module.exports = {
@@ -80,6 +67,5 @@ module.exports = {
     post,
     get,
     put,
-    remove,
-    getTeachers
+    remove
 }
