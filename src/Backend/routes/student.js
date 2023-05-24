@@ -1,15 +1,14 @@
-const express = require('express');
+const express = require("express");
 const bodyParser = require("body-parser");
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const router = express.Router();
 
-const controller = require("../controllers/studentController")
+const studentController = require("../controllers/studentController");
 
-router.get("/", controller.getAll)
-router.post("/", urlencodedParser,controller.post);
-router.get("/:student_id", controller.get);
-router.put("/:student_id", urlencodedParser, controller.put);
-router.delete("/:student_id", urlencodedParser, controller.remove);
-
+router.get("/", studentController.getAllStudent);
+router.post("/", urlencodedParser, studentController.postStudent);
+router.get("/:student_id", studentController.getStudent);
+router.put("/:student_id", urlencodedParser, studentController.putStudent);
+router.delete("/:student_id",urlencodedParser,studentController.removeStudent);
 
 module.exports = router;

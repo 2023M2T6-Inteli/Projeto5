@@ -1,71 +1,75 @@
-const db = require('sqlite3');
+const db = require("sqlite3");
 
-function getAll(db){
-    return new Promise((resolve, reject) => {
-        db.all('SELECT * FROM teachers ORDER BY id ASC', (err, rows) => {
-            if(err){
-                reject(err);
-            }
-            resolve(rows);
-        })
-    })
+function getAllTeachers(db) {
+  return new Promise((resolve, reject) => {
+    db.all("SELECT * FROM teachers ORDER BY id ASC", (err, rows) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(rows);
+    });
+  });
 }
 
-function post(db, params){
-    return new Promise((resolve, reject) => {
-        db.run("INSERT INTO teachers (name, email, password) VALUES (?, ?, ?)", params , (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve("Success")
-            }
-        })
-    })
+function postTeachers(db, params) {
+  return new Promise((resolve, reject) => {
+    db.run(
+      "INSERT INTO teachers (name, email, password) VALUES (?, ?, ?)",
+      params,
+      (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve("Professor(a) inserido(a) ");
+        }
+      }
+    );
+  });
 }
 
-function get(db, teacher_id){
-    return new Promise((resolve, reject) => {
-        db.all('SELECT * FROM teachers WHERE id= ?', [teacher_id], (err, rows) => {
-            if(err){
-                reject(err);
-            }
-            resolve(rows);
-        })
-    })
+function getTeachers(db, teacher_id) {
+  return new Promise((resolve, reject) => {
+    db.all("SELECT * FROM teachers WHERE id= ?", [teacher_id], (err, rows) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(rows);
+    });
+  });
 }
 
-function put(db, params) {
-    return new Promise((resolve, reject) => {
-      db.serialize(() => {
-        const sqlQuery =
-          "UPDATE teachers SET name = ?, email = ?, password = ? WHERE id = ?";
-  
-        db.run(sqlQuery, params, (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve("Usuário atualizado");
-          }
-        });
+function putTeachers(db, params) {
+  return new Promise((resolve, reject) => {
+    db.serialize(() => {
+      const sqlQuery =
+        "UPDATE teachers SET name = ?, email = ?, password = ? WHERE id = ?";
+
+      db.run(sqlQuery, params, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve("Professor(a) atualizado(a)");
+        }
       });
     });
-  }
+  });
+}
 
-function remove(db, teacher_id){
-return new Promise((resolve, reject) => {
-    db.all('DELETE FROM teachers WHERE id= ?', [teacher_id], (err, rows) => {
-        if(err){
-            reject(err);
-        }
-        resolve("Usuário deletado");
-    })
-})
+function removeTeachers(db, teacher_id) {
+  return new Promise((resolve, reject) => {
+    db.all("DELETE FROM teachers WHERE id= ?", [teacher_id], (err, rows) => {
+      if (err) {
+        reject(err);
+      }
+      resolve("Professor(a) deletado(a)");
+    });
+  });
 }
 
 module.exports = {
-    getAll,
-    post,
-    get,
-    put,
-    remove
-}
+  getAllTeachers,
+  postTeachers,
+  getTeachers,
+  putTeachers,
+  removeTeachers,
+};
