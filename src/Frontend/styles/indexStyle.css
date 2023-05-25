@@ -1,12 +1,11 @@
 /* importar a fonte para robot */
-
-*{
-    box-sizing: border-box;
-}
-
 body, html {
     background-color: rgb(150, 8, 64);
     justify-content: center;
+}
+
+.width100 {
+    width: 100%;
 }
 
 .container {
@@ -21,6 +20,16 @@ body, html {
     justify-content: center;
     position: absolute;
     background-color: white;
+}
+
+.login-title{
+    width: 100%;
+    height: 120px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
 }
 
 #name{
@@ -87,7 +96,7 @@ body, html {
 
 }
 
-.button-sig-in{
+.button-sign-in{
     width: 200px;
     background-color: #fff;
     border: none;
