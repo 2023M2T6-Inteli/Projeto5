@@ -1,0 +1,109 @@
+/* importar a fonte para robot */
+
+*{
+    box-sizing: border-box;
+}
+
+body, html {
+    background-color: rgb(150, 8, 64);
+    justify-content: center;
+}
+
+.container {
+    width: 430px;
+    height: auto;
+    border-radius: 20px;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    background-color: white;
+}
+
+#name{
+    text-align: center;
+    color: aliceblue;
+    margin-top: 100px;
+}
+.welcome{
+    font-size: 24px;
+    color: #fff;
+    margin-top: 50px;
+}
+.write-login{
+        font-size: 16px;
+        color:#fff;
+}
+.icon {
+    width: 25px;
+    height: 25px;
+}
+.margin-input{
+    margin-top: 5px;
+}
+
+.input-container {
+    width: 100%;
+    height: 54px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 0 25px;
+    border-radius: 12px;
+}
+
+.input-container > input{
+    border: none;
+
+    height: 100%;
+    width: calc(100% - 20px - 2px - 20px)
+}
+
+.input-container input:focus{
+    outline: none;
+}
+
+.input-icon {
+    width: 20px;
+}
+
+.input-divider {
+    height: 70%;
+    width: 2px;
+
+    margin: 0 10px;
+
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.button-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.button-sig-in{
+    width: 200px;
+    background-color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: rgba(150, 8, 64, 1);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.button-register{
+    width: 200px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+}
+.divider-button{
+    margin-top: 10px;
+}
