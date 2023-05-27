@@ -1,8 +1,9 @@
-/* importar a fonte para robot */
+/*body*/
 body, html {
     background-color: rgb(150, 8, 64);
     justify-content: center;
 }
+
 
 .width100 {
     width: 100%;
@@ -22,6 +23,7 @@ body, html {
     background-color: white;
 }
 
+/*text*/
 .login-title{
     width: 100%;
     height: 120px;
@@ -46,6 +48,8 @@ body, html {
         font-size: 16px;
         color:#fff;
 }
+
+/*inputs*/
 .icon {
     width: 25px;
     height: 25px;
@@ -90,6 +94,7 @@ body, html {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
+/*buttons*/
 .button-container{
     display: flex;
     flex-direction: column;
@@ -106,6 +111,7 @@ body, html {
     font-size: 14px;
     font-weight: 700;
 }
+
 
 .button-register{
     width: 200px;
