@@ -59,10 +59,20 @@ async function removeGrades(req, res) {
   res.json(result);
 }
 
+//
+
+async function getAverageClassGrades(req, res) {
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  const result = await studentModel.getAverageClassGrades(req.db, req.params.class_id);
+  res.json(result);
+}
+
 module.exports = {
   getAllGrades,
   postGrades,
   getGrades,
   putGrades,
   removeGrades,
+  getAverageClassGrades
 };

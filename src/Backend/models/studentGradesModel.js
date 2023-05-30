@@ -1,5 +1,7 @@
 const db = require("sqlite3");
 
+// CRUD
+
 function getAllGrade(db) {
   return new Promise((resolve, reject) => {
     db.all("SELECT * FROM student_grades ORDER BY id ASC", (err, rows) => {
@@ -66,10 +68,36 @@ function removeGrade(db, grade_id) {
   });
 }
 
+//
+
+function getAverageClassGrades(db, class_id) {
+  return new Promise((resolve, reject) => {
+    const sqlQuery = `
+      SELECT AVG(grade1) AS average_grade1,
+        AVG(grade2) AS average_grade2,
+        AVG(grade3) AS average_grade3,
+        AVG(grade4) AS average_grade4,
+        AVG(grade5) AS average_grade5
+      FROM student_grades
+      JOIN students ON student_grades.student_id = students.id
+      WHERE students.class_id = ?`;
+      
+    db.get(sqlQuery, [class_id], (err, row) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(row);
+      }
+    });
+  });
+}
+
+
 module.exports = {
   getAllGrade,
   postGrade,
   getGrade,
   putGrade,
   removeGrade,
+  getAverageClassGrades
 };
