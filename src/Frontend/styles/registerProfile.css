@@ -1,0 +1,135 @@
+
+
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+    border:0;
+    
+}
+
+body, html {
+    justify-content: center;
+    padding:0;
+
+   
+    
+
+ 
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: -8px;
+    border-right: -8px;
+    color: white;
+    
+    padding:0;
+    
+
+    background-color: #960840;
+}
+
+/*white background*/
+.white_background {
+    background-color: #fff;
+    padding-right: 16px;
+    padding-left: 16px;
+
+}
+
+/*inputs*/
+.icon {
+    width: 25px;
+    height: 25px;
+}
+.margin-input{
+    margin-top: 10px;
+}
+
+.input-container {
+    width: 100%;
+    height: 54px;
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+
+    padding: 0 25px;
+    border-radius: 12px;
+}
+
+.input-container > input{
+    border: none;
+    background-color: #f1f1f1;
+
+    height: 100%;
+    width: calc(100% - 20px - 2px - 20px)
+}
+
+.input-container input:focus{
+    outline: none;
+}
+
+.input-icon {
+    width: 20px;
+}
+
+.input-divider {
+    height: 70%;
+    width: 2px;
+
+    margin: 0 10px;
+
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/*buttons*/
+.button-container{
+    display: flex;
+    flex-direction: column;
+
+}
+
+.button-sig-in{
+    width: 200px;
+    background-color: #960840;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
+
+footer {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+    background-color: #960840;
+}
+
+footer p {
+    font-style: normal;
+    font-weight: 200;
+    font-size: 11px;
+    line-height: 13px;
+
+    color: #fff;
+}

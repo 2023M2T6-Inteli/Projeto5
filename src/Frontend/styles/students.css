@@ -1,0 +1,68 @@
+/*input*/
+.input-container {
+    position: relative;
+    display: inline-block;
+    height: 30px; 
+}
+
+.input-container input {
+    padding-left: 30px;
+    border-radius: 20px;
+    border: none;
+    height: 30px;
+    width: 200px;
+    line-height: 30px; 
+}
+
+.input-container .icon {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%); 
+}
+
+.icon {
+    width: 20px;
+}
+
+/*cards*/
+.students {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+.student-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.priority {
+    display: inline-block;
+    border-radius: 30px;
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.high {
+    background-color: #ff0000;
+}
+
+.medium {
+    background-color: #FDD835;
+}
+
+.competency {
+    width: 100%;
+    height: 20px;
+}
+
+
+
