@@ -1,11 +1,13 @@
 const express = require("express");
 const app = express();
 const databaseConnection = require("../middlewares/databaseConnection");
+const tokenValidation = require("../middlewares/tokenValidation");
 app.use(databaseConnection);
 const teacherModel = require("../models/teacherModel");
 
 async function getAllTeachers(req, res) {
   res.statusCode = 200;
+  const userId = Number(res.locals.returnJwtVerify.id);
   res.setHeader("Access-Control-Allow-Origin", "*");
   const result = await teacherModel.getAllTeachers(req.db);
   res.json(result);
@@ -13,6 +15,7 @@ async function getAllTeachers(req, res) {
 
 async function postTeachers(req, res) {
   res.statusCode = 200;
+  const userId = Number(res.locals.returnJwtVerify.id);
   res.setHeader("Access-Control-Allow-Origin", "*");
   const result = await teacherModel.postTeachers(req.db, [
     req.body.name,
