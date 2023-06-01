@@ -36,17 +36,42 @@ fetch(url_bd)
 
     // Algolia
     const SUBJECT = minGradeCodeValue;  // Assunto para pesquisar baseado na pior nota
-    const HITS = 5;             // Número de hits a retornar
+    const HITS = 10;             // Número de hits a retornar
 
     // Chama a função getContents com os parâmetros SUBJECT e HITS
     getContents(SUBJECT, HITS).then((contents) => {
-        // Para cada elemento do array contents, imprime o título e a URL
-        contents.forEach(element => {
-            console.log(element.titulo);
-            console.log(element.url);
-            console.log(element.thumbnail);
-        });
-    });
+      const coursesContainer = document.querySelector('#courses-container');
+  
+      // Para cada elemento do array contents, cria um novo elemento e adiciona ao container
+      contents.forEach(element => {
+          // Criação do elemento de âncora
+          const anchor = document.createElement('a');
+          anchor.href = element.url;
+          anchor.target = "_blank"; // Abrir em nova aba
+          anchor.classList.add('course-card');
+          coursesContainer.appendChild(anchor);
+  
+          // Criação da imagem
+          const image = document.createElement('img');
+          image.src = element.thumbnail;
+          image.alt = 'Imagem';
+          anchor.appendChild(image);
+  
+          // Criação do título do card
+          const cardTitle = document.createElement('div');
+          cardTitle.classList.add('course-card-title');
+          cardTitle.textContent = element.titulo;
+          anchor.appendChild(cardTitle);
+  
+          // Criação do container vazio
+          const cardContainer = document.createElement('div');
+          cardContainer.id = 'card-container';
+          anchor.appendChild(cardContainer);
+      });
+  });
+  
+  
+  
   })
   .catch(function(error) {
     console.log("Ocorreu um erro:", error);
