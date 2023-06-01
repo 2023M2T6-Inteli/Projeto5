@@ -31,15 +31,8 @@ fetch(url_bd)
     // Obtendo o código correspondente à menor nota
     var minGradeCodeValue = codeDictionary[minGradeCode];
 
-    // Exibindo o código da pior average grade
-    console.log("Código da pior average grade:", minGradeCodeValue);
-
-    // Algolia
-    const SUBJECT = minGradeCodeValue;  // Assunto para pesquisar baseado na pior nota
-    const HITS = 10;             // Número de hits a retornar
-
     // Chama a função getContents com os parâmetros SUBJECT e HITS
-    getContents(SUBJECT, HITS).then((contents) => {
+    getContents(minGradeCodeValue, 35).then((contents) => {
       const coursesContainer = document.querySelector('#courses-container');
   
       // Para cada elemento do array contents, cria um novo elemento e adiciona ao container
@@ -77,19 +70,26 @@ fetch(url_bd)
     console.log("Ocorreu um erro:", error);
   });
 
-// Função para obter os conteúdos do Algolia
-async function getContents(subject, hits) {
-    // fetch na URL de busca do Algolia com query params
-    const response = await fetch(`https://6I7NDWQ9YU-dsn.algolia.net/1/indexes/conteudo-pane-teste?query=${subject}&hitsPerPage=${hits}`, {
-        method: 'GET',
-        headers: {
-            // Headers necessários para autenticação no Algolia
-            'X-Algolia-Application-Id': '6I7NDWQ9YU',
-            'X-Algolia-API-Key': '459b8ac86fdd4dc47c31095c2dd12e2f'
-        }
-    });
-    // Transforma a resposta em JSON
-    const json = await response.json();
-    // Retorna o array de hits
-    return json.hits;
+// Função para obter hits aleatórios do Algolia
+async function getContents(subject, totalHits) {
+  const response = await fetch(`https://6I7NDWQ9YU-dsn.algolia.net/1/indexes/conteudo-pane-teste?query=${subject}&hitsPerPage=${totalHits}`, {
+    method: 'GET',
+    headers: {
+      'X-Algolia-Application-Id': '6I7NDWQ9YU',
+      'X-Algolia-API-Key': '459b8ac86fdd4dc47c31095c2dd12e2f'
+    }
+  });
+  const json = await response.json();
+  const shuffledHits = shuffle(json.hits);
+  const selectedHits = shuffledHits.slice(0, 6);
+  return selectedHits;
+}
+
+// Função para embaralhar um array (método de Fisher-Yates)
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 }
