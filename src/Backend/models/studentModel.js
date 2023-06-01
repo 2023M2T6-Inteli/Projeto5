@@ -11,6 +11,18 @@ function getAllStudent(db) {
   });
 }
 
+function getStudentByClassId(db, class_id) {
+  return new Promise((resolve, reject) => {
+    db.all("SELECT * FROM students WHERE class_id= ?", class_id, (err, rows) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(rows);
+    });
+  });
+}
+
+
 function postStudent(db, params) {
   return new Promise((resolve, reject) => {
     db.run(
@@ -72,4 +84,5 @@ module.exports = {
   getStudent,
   putStudent,
   removeStudent,
+  getStudentByClassId,
 };

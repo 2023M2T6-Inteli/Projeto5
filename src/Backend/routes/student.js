@@ -6,6 +6,7 @@ const router = express.Router();
 const studentController = require("../controllers/studentController");
 
 router.get("/", studentController.getAllStudent);
+router.get("/class_id", urlencodedParser, studentController.getStudentByClassId)
 router.post("/", urlencodedParser, studentController.postStudent);
 router.get("/:student_id", studentController.getStudent);
 router.put("/:student_id", urlencodedParser, studentController.putStudent);
