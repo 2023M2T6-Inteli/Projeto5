@@ -30,10 +30,10 @@
 }
 
 .back:hover{
-    background-color: rgb(150, 8, 64, 1);
+    background-color: rgb(255, 0, 0);
 }
 
 .conclude:hover{
-    background-color: rgb(0, 207, 131, 1);
+    background-color: rgb(68, 172, 42);
     width: 60%;
 };
