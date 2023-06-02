@@ -71,7 +71,7 @@ async function getAverageClassGrades(req, res) {
 async function postStudentGrade(req, res) {
   res.statusCode = 200;
   res.setHeader("Access-Control-Allow-Origin", "*");
-  const result = await studentModel.postGrade(req.db, [
+  const result = await studentModel.postStudentGrade(req.db, [
     req.params.student_id,
     req.body.lesson_id,
     req.body.grade1,
@@ -83,6 +83,21 @@ async function postStudentGrade(req, res) {
   res.json(result);
 }
 
+async function postClassGrade(req, res) {
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  const result = await studentModel.postClassGrade(req.db, [
+    req.body.lesson_id,
+    req.body.grade1,
+    req.body.grade2,
+    req.body.grade3,
+    req.body.grade4,
+    req.body.grade5,
+    req.params.class_id
+  ]);
+  res.json(result);
+}
+
 module.exports = {
   getAllGrades,
   postGrades,
@@ -90,5 +105,6 @@ module.exports = {
   putGrades,
   removeGrades,
   getAverageClassGrades,
-  postStudentGrade
+  postStudentGrade,
+  postClassGrade
 };

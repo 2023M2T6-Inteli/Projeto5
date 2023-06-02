@@ -12,5 +12,6 @@ router.put("/:grade_id", urlencodedParser, studentGradesController.putGrades);
 router.delete("/:grade_id",urlencodedParser,studentGradesController.removeGrades);
 router.get("/getAvg/:class_id", studentGradesController.getAverageClassGrades);
 router.post("/student/:student_id", urlencodedParser, studentGradesController.postStudentGrade)
+router.post("/class/:class_id", urlencodedParser, studentGradesController.postClassGrade)
 
 module.exports = router;
