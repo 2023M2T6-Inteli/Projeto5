@@ -14,7 +14,7 @@ async function getAllStudent(req, res) {
 async function getStudentByClassId(req, res){
   res.statusCode = 200;
   res.setHeader("Access-Control-Allow-Origin", "*");
-  const result = await studentModel.getStudentByClassId(req.db, [class_id]);
+  const result = await studentModel.getStudentByClassId(req.db, [req.params.class_id]);
   res.json(result)
 }
 

@@ -11,9 +11,9 @@ function getAllStudent(db) {
   });
 }
 
-function getStudentByClassId(db, class_id) {
+function getStudentByClassId(db, params) {
   return new Promise((resolve, reject) => {
-    db.all("SELECT * FROM students WHERE class_id= ?", class_id, (err, rows) => {
+    db.all("SELECT * FROM students WHERE class_id= ?", params, (err, rows) => {
       if (err) {
         reject(err);
       }

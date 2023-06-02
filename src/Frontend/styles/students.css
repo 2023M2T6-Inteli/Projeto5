@@ -33,6 +33,13 @@
 }
 
 
+.icon-class {
+    transform: scale(1);
+    /* transform-origin: top left; /* Muda o ponto de origem para o canto superior esquerdo */
+}
+
+
+
 .student-name {
     font-size: 24px;
     margin-bottom: 10px;
