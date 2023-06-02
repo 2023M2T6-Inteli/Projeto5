@@ -71,5 +71,39 @@
     height: 20px;
 }
 
+/* Cards de Cursos */
 
+.title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
 
+.course-card {
+    width: 300px;
+    border: 3px solid black;
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .course-card:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  }
+
+  .course-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .course-card-title {
+    font-weight: bold;
+    margin-top: 5px;
+    color: black;
+    margin-bottom: 2px;
+  }
