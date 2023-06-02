@@ -11,6 +11,13 @@ async function getAllStudent(req, res) {
   res.json(result);
 }
 
+async function getStudentByClassId(req, res){
+  res.statusCode = 200;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  const result = await studentModel.getStudentByClassId(req.db, [class_id]);
+  res.json(result)
+}
+
 async function postStudent(req, res) {
   res.statusCode = 200;
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -57,4 +64,5 @@ module.exports = {
   getStudent,
   putStudent,
   removeStudent,
+  getStudentByClassId,
 };
