@@ -18,22 +18,21 @@
 }
 
 .button{
-    margin-top: 20px;
-    font-size: 20px;
+    width: 100%;
+    background-color: #960840;
+    border: none;
     padding: 10px 15px;
     border-radius: 10px;
-    background-color: transparent;
-    border-color: black;
-    color: black;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
-    transition: 0.4s;
 }
 
 .back:hover{
-    background-color: rgb(255, 0, 0);
+    opacity: 0.8;
 }
 
 .conclude:hover{
-    background-color: rgb(68, 172, 42);
-    width: 60%;
+    opacity: 0.8;
 };

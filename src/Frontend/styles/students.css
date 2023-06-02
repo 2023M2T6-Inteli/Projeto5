@@ -64,5 +64,23 @@
     height: 20px;
 }
 
+.button{
+  background-color: #960840;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  max-width: 400px;
+  width: 40%;
+  height: 50px;
+  border: 0.47687px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6.67619px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 8px;
+  color: #FFF;
+  cursor: pointer;
+}
+
+
+
 
 

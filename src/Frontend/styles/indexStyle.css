@@ -6,7 +6,7 @@ body, html {
 
 
 .width100 {
-    width: 100%;
+    width: 70%;
 }
 
 .container {
@@ -110,8 +110,16 @@ body, html {
     color: rgba(150, 8, 64, 1);
     font-size: 14px;
     font-weight: 700;
+    cursor: pointer;
 }
 
+.button-sign-in:hover{
+    opacity: 0.8;
+}
+
+.button-register:hover{
+    opacity: 0.8;
+}
 
 .button-register{
     width: 200px;

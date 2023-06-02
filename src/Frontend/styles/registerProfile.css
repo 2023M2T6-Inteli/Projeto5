@@ -36,10 +36,12 @@ header {
 
 /*white background*/
 .white_background {
+
     background-color: #fff;
     padding-right: 16px;
     padding-left: 16px;
 
+    padding-bottom: 100px;
 }
 
 /*inputs*/
@@ -92,12 +94,12 @@ header {
 /*buttons*/
 .button-container{
     display: flex;
-    flex-direction: column;
-
+    justify-content: center;
+    gap: 10px;
 }
 
-.button-sig-in{
-    width: 200px;
+.button{
+    width: 20%;
     background-color: #960840;
     border: none;
     padding: 10px 15px;
@@ -105,11 +107,12 @@ header {
     color: rgb(255, 255, 255);
     font-size: 14px;
     font-weight: 700;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%,0);
+    cursor: pointer;
 }
 
+#button-enter{
+    background-color:rgb(68, 172, 42);
+}
 
 footer {
     width: 100%;
