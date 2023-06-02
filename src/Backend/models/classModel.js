@@ -20,7 +20,7 @@ function postClass(db, params) {
         if (err) {
           reject(err);
         } else {
-          resolve("Turma inserida");
+          resolve("Turma inserida!");
         }
       }
     );
@@ -80,6 +80,35 @@ function getTeachers(db) {
   });
 }
 
+function getClassesByTeacherId(db, teacherId) {
+  return Promise((resolve, reject) =>{
+      const sqlQuery = "SELECT * FROM classes WHERE teacher_id = ?"
+      const params = [teacherId]
+      db.all(sqlQuery, params, (err, rows) =>{
+        if(err){
+          reject(err);
+        }
+        else{
+          resolve(rows);
+        }
+      })
+  })
+}
+function postClassByTeacherId(db, params){
+  return Promise((resolve, reject) => {
+      const sqlQuery = "INSERT INTO classes (class_title, teacher_id) VALUES(?, ?)"
+      
+      db.run(sqlQuery, params, (err) => {
+        if(err) {
+        reject(err);
+        }
+        else{
+        resolve("turma inserida!");
+        }
+      }
+    );
+  });
+}
 module.exports = {
   getAllClass,
   postClass,
@@ -87,4 +116,6 @@ module.exports = {
   putClass,
   removeClass,
   getTeachers,
+  getClassesByTeacherId,
+  postClassByTeacherId,
 };

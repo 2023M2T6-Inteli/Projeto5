@@ -2,7 +2,8 @@ CREATE TABLE teachers (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	name text,
 	email text,
-	password text
+	password text,
+	phone text
 );
 
 CREATE TABLE students (

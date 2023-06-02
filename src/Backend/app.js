@@ -1,13 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const databaseConnection = require("./middlewares/databaseConnection")
-const tokenValidation = require("./middlewares/tokenValidation");
 const hostname = "127.0.0.1";
-const PORT = Number(process.env.PORT);
 const app = express();
-
+const dotenv = require("dotenv");
+dotenv.config({path: __dirname + "/.env"});
 app.use(express.json());
+const PORT = process.env.PORT;
 
 const registerRoute = require("./routes/register")
 const loginRoute = require("./routes/login");

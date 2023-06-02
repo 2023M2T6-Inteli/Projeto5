@@ -1,4 +1,5 @@
 const registerModel = require("../models/registerModel");
+const bcrypt = require('bcrypt');
 
 async function postRegister(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");

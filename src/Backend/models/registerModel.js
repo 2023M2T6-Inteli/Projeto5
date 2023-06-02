@@ -1,7 +1,7 @@
 function postRegister(db, params) {
   return new Promise((resolve, reject) => {
     db.run(
-      "INSERT INFO teachers (name, email, password, phone) VALUES (?, ?, ?, ?)",
+      "INSERT INTO teachers (name, email, password, phone) VALUES (?, ?, ?, ?)",
       params,
       (err) => {
         if(err) {

@@ -53,6 +53,24 @@ async function getTeachers(req, res) {
   res.json(result);
 }
 
+async function getClassesByTeacherId(req, res){
+    res.statuscode = 200;
+    res.setHeader("Access-Control-Allow-Oringin", "*");
+    const teacherId = res.locals.returnJwtVerify.id;
+    const result = await classModel.getClassesByTeacherId(req.db, teacherId);
+    res.json(result);
+}
+
+async function postClassByTeacherId(req, res){
+  res.statuscode = 200;
+  res.setheadr("Acess-Control-Allow-Oringin", "*");
+  const teacherId = res.local.returnJwtVerify.id;
+  const result = await classModel.postClassByTeacherId(req.db, [
+    req.body.class_title,
+    teacherId,
+  ]);
+  res.json(result);
+}
 module.exports = {
   getAllClass,
   postClass,
@@ -60,4 +78,6 @@ module.exports = {
   putClass,
   removeClass,
   getTeachers,
+  getClassesByTeacherId,
+  postClassByTeacherId
 };

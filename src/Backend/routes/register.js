@@ -5,6 +5,6 @@ const router = express.Router();
 
 const registerController = require("../controllers/registerController");
 
-router.post("/sign-up", urlencodedParser, registerController.postRegister);
+router.post("/", urlencodedParser, registerController.postRegister);
 
 module.exports = router;
