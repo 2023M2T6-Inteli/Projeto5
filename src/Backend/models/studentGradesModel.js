@@ -92,6 +92,22 @@ function getAverageClassGrades(db, class_id) {
   });
 }
 
+function postStudentGrade(db, params) {
+  return new Promise((resolve, reject) => {
+    db.run(
+      "INSERT INTO student_grades (student_id, lesson_id, grade1, grade2, grade3, grade4, grade5) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      params,
+      (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve("Nota inserida");
+        }
+      }
+    );
+  });
+}
+
 
 module.exports = {
   getAllGrade,
@@ -99,5 +115,6 @@ module.exports = {
   getGrade,
   putGrade,
   removeGrade,
-  getAverageClassGrades
+  getAverageClassGrades,
+  postStudentGrade
 };
