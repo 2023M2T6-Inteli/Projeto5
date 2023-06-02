@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "9e727bb8-6b9b-4037-8bd0-5b3654bdc960",
+		"_postman_id": "5b6f16da-6dde-4f7b-a1d7-35fea0166354",
 		"name": "NovaProfessora",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "26913444"
+		"_exporter_id": "26971837"
 	},
 	"item": [
 		{
@@ -316,6 +316,89 @@
 					"port": "3000",
 					"path": [
 						"getProfessorTurma"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name ",
+							"value": "Breno",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "12345678900",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "breno@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "breno123",
+							"type": "text"
+						},
+						{
+							"key": "confirmPassword",
+							"value": "breno123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "breno@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "breno123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
 					]
 				}
 			},
