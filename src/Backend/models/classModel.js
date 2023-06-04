@@ -81,7 +81,7 @@ function getTeachers(db) {
 }
 
 function getClassesByTeacherId(db, teacherId) {
-  return Promise((resolve, reject) =>{
+  return new Promise((resolve, reject) =>{
       const sqlQuery = "SELECT * FROM classes WHERE teacher_id = ?"
       const params = [teacherId]
       db.all(sqlQuery, params, (err, rows) =>{
@@ -94,8 +94,9 @@ function getClassesByTeacherId(db, teacherId) {
       })
   })
 }
+
 function postClassByTeacherId(db, params){
-  return Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
       const sqlQuery = "INSERT INTO classes (class_title, teacher_id) VALUES(?, ?)"
       
       db.run(sqlQuery, params, (err) => {
