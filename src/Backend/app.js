@@ -6,6 +6,9 @@ const app = express();
 const dotenv = require("dotenv");
 dotenv.config({path: __dirname + "/.env"});
 app.use(express.json());
+const cors = require('cors');
+app.use(cors());
+
 const PORT = process.env.PORT;
 
 const registerRoute = require("./routes/register")
