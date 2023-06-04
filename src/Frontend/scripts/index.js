@@ -24,7 +24,7 @@ function login() {
           // Armazenar o token no localStorage
           localStorage.setItem("token", result);
           // Redirecionar para a página de perfil ou qualquer outra página desejada
-          window.location.href = "perfil.html";
+          window.location.href = "classes.html";
         } else {
           alert("Email e/ou senha incorretos.");
         }
