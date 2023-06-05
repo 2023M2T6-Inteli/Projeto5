@@ -31,10 +31,12 @@ function register() {
         // Tratar a resposta do servidor
         console.log(result);
         alert(result);
+        window.location.href = "index.html"
       })
       .catch((error) => {
         console.error(error);
         alert("Ocorreu um erro ao processar a solicitação.");
+        window.location.href = "index.html"
       });
   }
   
