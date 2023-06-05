@@ -239,6 +239,47 @@ main {
     box-shadow: -407px 0 0 400px rgb(193, 139, 153, 1);
 }
 
+/* Colors */
+  
+.yellow-50 {
+background-color: rgba(255, 184, 0, 0.5);
+}
+
+.yellow-100 {
+background-color: rgba(255, 184, 0, 1);
+}
+
+.blue-50 {
+background-color: rgba(107, 204, 254, 0.5);
+}
+
+.blue-100 {
+background-color: rgba(107, 204, 254, 1);
+}
+
+.red-50 {
+background-color: rgba(150, 8, 64, 0.5);
+}
+
+.red-100 {
+background-color: rgba(150, 8, 64, 1);
+}
+
+.green-50 {
+background-color: rgba(0, 207, 131, 0.5);
+}
+
+.green-100 {
+background-color: rgba(0, 207, 131, 1);
+}
+
+.grey-50 {
+background-color: rgba(193, 139, 153, 0.5);
+}
+
+.grey-100 {
+background-color: rgba(193, 139, 153, 1);
+}
 
 
 
