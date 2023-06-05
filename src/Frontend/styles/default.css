@@ -38,6 +38,9 @@ main {
     justify-content: center;
 
     padding-bottom: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 

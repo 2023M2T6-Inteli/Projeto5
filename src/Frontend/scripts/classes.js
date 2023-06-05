@@ -59,6 +59,16 @@ function getTokenFromLocalStorage() {
 
             const div = document.createElement('div');
             div.className = 'card';
+            div.dataset.classId = id; // Adiciona o ID invisível como atributo data
+
+            div.addEventListener('click', () => {
+              // Ação a ser executada quando a div for clicada
+              const classId = div.dataset.classId; // Obtém o ID da sala clicada
+              console.log('Div clicada:', classId);
+              // Redirecionar para a página students.html com o ID da sala como parâmetro na URL
+              const url = `students.html?id=${encodeURIComponent(classId)}`;
+              window.location.href = url;
+          });
 
             const h2 = document.createElement('h2');
             h2.className = 'class-name';

@@ -45,6 +45,23 @@
     border-color: rgba(255, 255, 255, 0.8);
     color: black;
 }
+
+/* Cards */
+
+.card {
+  width: 300px;
+  background-color: #dedddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  box-sizing: border-box;
+  transition: background-color 0.3s;
+}
+
+.card:hover {
+  background-color: #c5c5c5;
+  cursor: pointer;
+}
   
   
   /* Progress Bar */

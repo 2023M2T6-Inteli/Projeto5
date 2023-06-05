@@ -1,6 +1,16 @@
-// Coletando a pior nota 
-// URL da rota do backend
-var url_avg_grade = 'http://127.0.0.1:3000/studentGrades/getAvg/10';
+// Função para obter o valor do parâmetro "id" da URL
+function getClassIdFromUrl() {
+  const searchParams = new URLSearchParams(window.location.search);
+  return searchParams.get('id');
+}
+
+// ...
+
+// Coletando o ID da sala da URL
+const classId = getClassIdFromUrl();
+
+// Construindo a URL com o ID da sala
+var url_avg_grade = `http://127.0.0.1:3000/studentGrades/getAvg/${classId}`;
 
 // Dicionário dos códigos
 var codeDictionary = {
