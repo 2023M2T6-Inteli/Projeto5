@@ -63,8 +63,8 @@ async function getClassesByTeacherId(req, res){
 
 async function postClassByTeacherId(req, res){
   res.statuscode = 200;
-  res.setheadr("Acess-Control-Allow-Oringin", "*");
-  const teacherId = res.local.returnJwtVerify.id;
+  res.setHeader("Acess-Control-Allow-Oringin", "*");
+  const teacherId = res.locals.returnJwtVerify.id;
   const result = await classModel.postClassByTeacherId(req.db, [
     req.body.class_title,
     teacherId,

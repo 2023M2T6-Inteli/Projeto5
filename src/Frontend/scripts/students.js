@@ -1,6 +1,6 @@
 // Coletando a pior nota 
 // URL da rota do backend
-var url_bd = 'http://127.0.0.1:3000/studentGrades/getAvg/10';
+var url_avg_grade = 'http://127.0.0.1:3000/studentGrades/getAvg/10';
 
 // Dicionário dos códigos
 var codeDictionary = {
@@ -12,7 +12,7 @@ var codeDictionary = {
 };
 
 // Realizando a requisição utilizando o fetch
-fetch(url_bd)
+fetch(url_avg_grade)
   .then(function(response) {
     return response.json();
   })

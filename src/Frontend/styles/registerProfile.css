@@ -96,18 +96,25 @@ header {
 
 }
 
-.button-sig-in{
+.button-sig-in {
     width: 200px;
     background-color: #960840;
     border: none;
     padding: 10px 15px;
     border-radius: 10px;
-    color: rgb(255, 255, 255);
+    color: #fff;
     font-size: 14px;
     font-weight: 700;
-    position: absolute;
+    position: relative;
     left: 50%;
-    transform: translate(-50%,0);
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-sig-in:hover {
+    background-color: #820735;
+    color: #fff;
 }
 
 

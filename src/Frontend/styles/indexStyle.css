@@ -101,22 +101,41 @@ body, html {
 
 }
 
-.button-sign-in{
-    width: 200px;
-    background-color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 10px;
-    color: rgba(150, 8, 64, 1);
-    font-size: 14px;
-    font-weight: 700;
-}
-
-
-.button-register{
+.button-sign-in {
     width: 200px;
     background-color: transparent;
-    border: none;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.button-sign-in:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: #fff;
+}
+
+.button-register {
+    width: 200px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.button-register:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
     color: #fff;
 }
 .divider-button{
