@@ -113,4 +113,5 @@ function getTokenFromLocalStorage() {
   
   // Chama a função principal para iniciar o processo
   document.addEventListener('DOMContentLoaded', initialize);
+
   

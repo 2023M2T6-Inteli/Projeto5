@@ -24,6 +24,27 @@
   .icon {
     width: 20px;
   }
+
+  .button-create-class {
+    width: 200px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #ffffff;
+    background-color: #960840;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    margin-top: 15px;
+}
+
+.button-create-class:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}
   
   
   /* Progress Bar */
