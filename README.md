@@ -44,40 +44,62 @@ Dentre os arquivos presentes na raiz do projeto, definem-se:
 
 - <b>src</b>: nesta pasta encontra-se todo o código fonte do sistema (existem duas subpastas <b>backend</b> e <b>frontend</b> que contêm, respectivamente, o código do servidor e o código da página web).
 
-## 💻 Configuração para desenvolvimento
 
-Aqui encontram-se todas as instruções necessárias para a instalação de todos os programas, bibliotecas e ferramentas imprescindíveis para a configuração do ambiente de desenvolvimento.
+## 💻 Configuração do Ambiente de Desenvolvimento
 
-1.  Baixar e instalar o node.js:  [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
+Aqui estão todas as instruções necessárias para a instalação de todos os programas, bibliotecas e ferramentas imprescindíveis para a configuração do ambiente de desenvolvimento.
+
+1. Baixar e instalar o Node.js: [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
 2. Clone o repositório em questão.
-3.  No modo administrador, abra o "prompt de comando" ou o "terminal" e, após,  abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
+3. No modo administrador, abra o "prompt de comando" ou o "terminal" e, após, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
 
-```sh
+```terminal
 npm install
 ```
 
-Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
+Isso instalará todas as dependências definidas no arquivo package.json que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
+node /app.js
 
-```sh
-npm start
+4. Agora você pode acessar a aplicação através do link [http://localhost:3000/](http://localhost:3000/).
+O servidor está online.
+
+## Bibliotecas Utilizadas
+
+Abordando brevemente as bibliotecas utilizadas no projeto:
+
+```json
+{
+"name": "backend",
+"version": "1.0.0",
+"description": "",
+"main": "app.js",
+"scripts": {
+ "test": "echo \"Error: no test specified\" && exit 1"
+},
+"keywords": [],
+"author": "",
+"license": "ISC",
+"dependencies": {
+ "bcrypt": "^5.1.0",
+ "body-parser": "^1.20.2",
+ "cors": "^2.8.5",
+ "dotenv": "^16.1.1",
+ "express": "^4.18.2",
+ "jsonwebtoken": "^8.5.1",
+ "sqlite3": "^5.1.6"
+}
+}
+
 ```
-5. Agora você pode acessar a aplicação através do link http://localhost:1234/
-6. O servidor está online.
+Essas bibliotecas são instaladas automaticamente quando você executa o comando npm install. Alguns exemplos das bibliotecas utilizadas são:
 
-
-```
-Alunos inteli (remover essa observação do readme.md após leitura e execução):
-
-1. Certifique-se que há um arquivo "package.json" na pasta backend do projeto.
-
-2. Dentro deste arquivo, encontre a propriedade "scripts", e adicione um atributo de nome "start"
-com o valor "node <CAMINHO_DO_ARQUIVO_DO_SERVIDOR>." Atenção: "<CAMINHO_DO_ARQUIVO_DO_SERVIDOR>" 
-deve ser substituído pelo caminho para o arquivo principal da aplicação, utilizado para subir o
-servidor. Por exemplo, se o arquivo utilizado para subir o servidor é "app.js", o atributo start
-deve possuir o valor "node app.js".
-
-3. No arquivo utilizado para subir a aplicação, defina a porta padrão de execução para "1234".
-````
+1. bcrypt: Uma biblioteca para criptografia de senhas.
+2. body-parser: Uma biblioteca para análise de corpos de solicitação HTTP.
+3. cors: Uma biblioteca para lidar com políticas de compartilhamento de recursos entre origens (CORS).
+4. dotenv: Uma biblioteca para carregar variáveis de ambiente a partir de um arquivo .env.
+5. express: Um framework web para construir aplicativos e APIs com Node.js.
+6. jsonwebtoken: Uma biblioteca para geração e verificação de tokens de autenticação JSON Web.
+7. sqlite3: Um driver para interagir com bancos de dados SQLite.
 
 ## 🗃 Histórico de lançamentos
 
@@ -86,6 +108,11 @@ deve possuir o valor "node app.js".
 * 2.0 - 11/05/2023
     * CRUD para a tabela Professores
     * CRUD para a tabela Turmas
+* 3.0 - 26/05/2023
+    * Finalização do CRUD para todas as tabelas
+    * Telas do front
+    * Padronização do CSS
+    * Inicio da configuração do token JWT
 
 ## 📋 Licença/License
 
