@@ -21,5 +21,4 @@ function tokenValidation(req, res, next) {
     return res.status(401).send("Token inválido.")
   }
 }
-
 module.exports = tokenValidation

@@ -55,7 +55,7 @@ async function getTeachers(req, res) {
 
 async function getClassesByTeacherId(req, res){
     res.statuscode = 200;
-    res.setHeader("Access-Control-Allow-Oringin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "*");
     const teacherId = res.locals.returnJwtVerify.id;
     const result = await classModel.getClassesByTeacherId(req.db, teacherId);
     res.json(result);

@@ -114,18 +114,58 @@
     align-items: center;
   }
 
-  .course-card:hover {
+.course-card:hover {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  }
+}
 
-  .course-card img {
+.course-card img {
     width: 100%;
     height: auto;
-  }
+}
 
-  .course-card-title {
+.course-card-title {
     font-weight: bold;
     margin-top: 5px;
     color: black;
     margin-bottom: 2px;
-  }
+}
+
+ /* Progress Bar */
+.progress-bar-default {
+    border-radius: 0 12px 12px 0;
+    height: 20px;
+    margin-right: auto;
+}
+  /* Cards */
+.student-name {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.student-call-number {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.competencies {
+    display: flex;
+    flex-direction: column;
+}
+  
+.competency {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-direction: column;
+    margin-top: 2px;
+    margin-bottom: 25px;
+}
+  
+.competency p {
+    margin-right: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

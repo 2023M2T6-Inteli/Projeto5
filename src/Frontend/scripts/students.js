@@ -1,7 +1,115 @@
+
 // Função para obter o valor do parâmetro "id" da URL
+
+
 function getClassIdFromUrl() {
   const searchParams = new URLSearchParams(window.location.search);
   return searchParams.get('id');
+}
+
+const id = getClassIdFromUrl()
+console.log(id)
+
+async function fetchStudentsByClassId() {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/student/class/${id}`
+    );
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching students:", error);
+    throw error;
+  }
+}
+
+function openRegisterStudent() {
+  const url = `registerStudent.html?id=${encodeURIComponent(id)}`;
+  window.location.href = url;
+}
+
+async function fetchAverageClassGrades(classId) {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/studentGrades/getAvg/${classId}`
+    );
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching average class grades:", error);
+    throw error;
+  }
+}
+
+function createDivs(students) {
+  const container = document.querySelector("#students-container");
+  console.log(students)
+
+  students.forEach(async (studentsData) => {
+    const { id, class_id, name, call_number } = studentsData;
+    try {
+      const averages = await fetchAverageClassGrades(id);
+
+      const div = document.createElement("div");
+      div.className = "card";
+      div.dataset.classId = id; // Adiciona o ID invisível como atributo data
+
+      div.addEventListener("click", () => {
+        // Ação a ser executada quando a div for clicada
+        const studentId = div.dataset.classId; // Obtém o ID do aluno clicada
+        console.log("Div clicada:", studentId);
+        // Redirecionar para a página students.html com o ID do aluno como parâmetro na URL
+        const url = `students.html?id=${encodeURIComponent(Id)}`;
+        window.location.href = url;
+      });
+
+      console.log(name);
+      console.log(call_number);
+
+      const h2 = document.createElement("h2");
+      h2.className = "student-name";
+      h2.textContent = `${call_number} - ${name}`;
+      div.appendChild(h2);;
+
+      const competencyNames = [
+        "Eu, o outro e nós:",
+        "Corpo, gestos e movimentos:",
+        "Traços, sons, cores e formas:",
+        "Escuta, fala, pensamento e imaginação:",
+        "Espaços, tempos, quantidades, relações e transformações:",
+      ];
+      const competencyColors = ["yellow", "blue", "red", "green", "grey"];
+
+      competencyNames.forEach((competency, index) => {
+        const competencyDiv = document.createElement("div");
+        competencyDiv.className = `competency ${competencyColors[index]}-50`;
+
+        const p = document.createElement("p");
+        p.textContent = competency;
+
+        const progressBarDiv = document.createElement("div");
+        progressBarDiv.className = `${competencyColors[index]}-100 progress-bar-default`;
+
+        const percentage = averages[`average_grade${index + 1}`] || 0;
+        progressBarDiv.style.width = `${percentage * 10}%`;
+        competencyDiv.appendChild(progressBarDiv);
+
+        div.appendChild(p);
+        div.appendChild(competencyDiv);
+      });
+
+      container.appendChild(div);
+    } catch (error) {
+      console.error("Error creating divs:", error);
+    }
+  });
 }
 
 // ...
@@ -103,3 +211,16 @@ function shuffle(array) {
   }
   return array;
 }
+
+ async function initialize() {
+   try {
+     const classes = await fetchStudentsByClassId();
+     createDivs(classes);
+   } catch (error) {
+     console.error("Error initializing:", error);
+   }
+ }
+
+ // Chama a função principal para iniciar o processo
+ document.addEventListener("DOMContentLoaded", initialize);
+

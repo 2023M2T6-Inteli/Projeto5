@@ -13,7 +13,7 @@ function getAllStudent(db) {
 
 function getStudentByClassId(db, params) {
   return new Promise((resolve, reject) => {
-    db.all("SELECT * FROM students WHERE class_id= ?", params, (err, rows) => {
+    db.all("SELECT * FROM students WHERE class_id= ? ORDER BY call_number", params, (err, rows) => {
       if (err) {
         reject(err);
       }
