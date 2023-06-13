@@ -168,4 +168,9 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    cursor: pointer;
+}
+
+.card:hover{
+    opacity: 0.8;
 }
