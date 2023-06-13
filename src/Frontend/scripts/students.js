@@ -32,6 +32,26 @@ function openRegisterStudent() {
   window.location.href = url;
 }
 
+function searchStudentCard() {
+  const searchValue = document.querySelector(".inputStudentName").value.trim().toLowerCase();
+  if (searchValue === "") {
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card) => {
+      card.style.display = "block";
+    });
+    return;
+  }
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => {
+    const studentName = card.querySelector(".student-name").textContent.toLowerCase();
+    if (studentName.includes(searchValue)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
 async function fetchAverageClassGrades(classId) {
   try {
     const response = await fetch(
