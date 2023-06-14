@@ -52,6 +52,23 @@ function searchStudentCard() {
   });
 }
 
+function deleteStudent(classId) {
+  fetch(`http://localhost:3000/student/${classId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      alert("Aluno deletada com sucesso");
+        window.location.reload();
+    })
+    .catch((error) => {
+      alert("Erro ao deletar");
+    });
+}
+
 async function fetchAverageClassGrades(classId) {
   try {
     const response = await fetch(
@@ -70,7 +87,6 @@ async function fetchAverageClassGrades(classId) {
 
 function createDivs(students) {
   const container = document.querySelector("#students-container");
-  console.log(students)
 
   students.forEach(async (studentsData) => {
     const { id, class_id, name, call_number } = studentsData;
@@ -84,14 +100,10 @@ function createDivs(students) {
       div.addEventListener("click", () => {
         // Ação a ser executada quando a div for clicada
         const studentId = div.dataset.classId; // Obtém o ID do aluno clicada
-        console.log("Div clicada:", studentId);
         // Redirecionar para a página students.html com o ID do aluno como parâmetro na URL
-        const url = `students.html?id=${encodeURIComponent(Id)}`;
+        const url = `students.html?id=${encodeURIComponent(id)}`;
         window.location.href = url;
       });
-
-      console.log(name);
-      console.log(call_number);
 
       const cardHeader = document.createElement("div")
       cardHeader.className = "cardHeader"
@@ -100,11 +112,16 @@ function createDivs(students) {
       const h2 = document.createElement("h2");
       h2.className = "student-name";
       h2.textContent = `${call_number} - ${name}`;
-      cardHeader.appendChild(h2);;
+      cardHeader.appendChild(h2);
       const button = document.createElement("button")
       button.className = "delete-student"
       button.textContent = "Excluir"
       cardHeader.appendChild(button)
+
+      button.onclick = (event) => {
+        event.stopPropagation();
+        deleteStudent(id);
+      };
 
       div.appendChild(cardHeader)
 
