@@ -20,7 +20,7 @@ function login() {
         // Tratar a resposta do servidor
         console.log(result);
         if (result) {
-          alert("Token: " + result);
+        
           // Armazenar o token no localStorage
           localStorage.setItem("token", result);
           // Redirecionar para a página de perfil ou qualquer outra página desejada

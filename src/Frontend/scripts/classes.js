@@ -47,6 +47,26 @@ function getTokenFromLocalStorage() {
       throw error;
     }
   }
+
+  function deleteClass(classId){
+
+    const token = getTokenFromLocalStorage()
+    fetch(`http://localhost:3000/class/${classId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        alert("Turma deletada com sucesso")
+        window.location.reload();
+      })
+      .catch((error) => {
+        alert("Erro ao deletar")
+      });
+  }
   
   // Função para criar as divs dinamicamente com base nas porcentagens
   function createDivs(classes) {
@@ -70,10 +90,23 @@ function getTokenFromLocalStorage() {
               window.location.href = url;
           });
 
+
+            const cardHeader = document.createElement("div");
+            cardHeader.className = "cardHeader";
+
             const h2 = document.createElement('h2');
             h2.className = 'class-name';
             h2.textContent = class_title;
-            div.appendChild(h2);
+            cardHeader.appendChild(h2);
+            const button = document.createElement("button");
+            button.className = "delete-class";
+            button.textContent = "Excluir";
+            
+            cardHeader.appendChild(button);
+            div.appendChild(cardHeader)
+            button.onclick = (event) => {
+              event.stopPropagation();
+              deleteClass(id)};
 
             const competencyNames = [
                 'Eu, o outro e nós:',
@@ -123,5 +156,7 @@ function getTokenFromLocalStorage() {
   
   // Chama a função principal para iniciar o processo
   document.addEventListener('DOMContentLoaded', initialize);
+
+
 
   

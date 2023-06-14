@@ -29,8 +29,6 @@ function register() {
       .then((response) => response.json())
       .then((result) => {
         // Tratar a resposta do servidor
-        console.log(result);
-        alert(result);
         window.location.href = "index.html"
       })
       .catch((error) => {

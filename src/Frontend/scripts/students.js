@@ -93,10 +93,20 @@ function createDivs(students) {
       console.log(name);
       console.log(call_number);
 
+      const cardHeader = document.createElement("div")
+      cardHeader.className = "cardHeader"
+  
+
       const h2 = document.createElement("h2");
       h2.className = "student-name";
       h2.textContent = `${call_number} - ${name}`;
-      div.appendChild(h2);;
+      cardHeader.appendChild(h2);;
+      const button = document.createElement("button")
+      button.className = "delete-student"
+      button.textContent = "Excluir"
+      cardHeader.appendChild(button)
+
+      div.appendChild(cardHeader)
 
       const competencyNames = [
         "Eu, o outro e nós:",
