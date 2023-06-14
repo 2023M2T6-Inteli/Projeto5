@@ -124,6 +124,7 @@ body, html {
     width: 200px;
     background-color: transparent;
     border: 2px solid #fff;
+
     color: #fff;
     padding: 10px 15px;
     border-radius: 10px;
@@ -133,6 +134,10 @@ body, html {
     transition: background-color 0.3s, border-color 0.3s, color 0.3s;
 }
 
+.registerA {
+    color: #fff;
+}
+
 .button-register:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.8);
@@ -140,4 +145,9 @@ body, html {
 }
 .divider-button{
     margin-top: 10px;
+}
+
+.question{
+    margin-top: 10px;
+    color:#fff
 }
