@@ -86,8 +86,9 @@ async function postStudentGrade(req, res) {
 async function postClassGrade(req, res) {
   res.statusCode = 200;
   res.setHeader("Access-Control-Allow-Origin", "*");
+  console.log(req.body);
   const result = await studentModel.postClassGrade(req.db, [
-    req.body.lesson_id,
+    1,
     req.body.grade1,
     req.body.grade2,
     req.body.grade3,

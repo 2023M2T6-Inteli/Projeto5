@@ -108,13 +108,15 @@ function postStudentGrade(db, params) {
   });
 }
 
-function postStudentGrade(db, params) {
+function postClassGrade(db, params) {
   return new Promise((resolve, reject) => {
+    console.log(params);
     db.run(
       `INSERT INTO student_grades (student_id, lesson_id, grade1, grade2, grade3, grade4, grade5)
       SELECT students.id, ?, ?, ?, ?, ?, ?
       FROM students
       INNER JOIN classes ON students.class_id = classes.id
+      INNER JOIN lessons ON classes.id = lessons.class_id
       WHERE classes.id = ?;`,
       params,
       (err) => {
@@ -137,5 +139,6 @@ module.exports = {
   putGrade,
   removeGrade,
   getAverageClassGrades,
-  postStudentGrade
+  postStudentGrade,
+  postClassGrade
 };

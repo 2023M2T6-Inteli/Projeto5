@@ -32,6 +32,11 @@ function openRegisterStudent() {
   window.location.href = url;
 }
 
+function addLesson(){
+  const url = `classSkills.html?id=${encodeURIComponent(id)}`;
+  window.location.href = url;
+}
+
 function searchStudentCard() {
   const searchValue = document.querySelector(".inputStudentName").value.trim().toLowerCase();
   if (searchValue === "") {
