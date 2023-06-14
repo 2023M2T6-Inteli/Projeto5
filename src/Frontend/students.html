@@ -18,6 +18,7 @@
             <button class="button" onclick="window.location.href='classSkills.html'">Adicionar uma Aula</button>
             <button class="button" onclick=openRegisterStudent()>Adicionar um Aluno</button>
         </div>
+
         <br><br><br>
 
         <div class="default-container">
@@ -25,19 +26,21 @@
             <!--input html-->
             <section class="input-container">
                 <img src="assets/icon_student.png" alt="Ícone" class="icon">
-                <input type="text" placeholder="Digite aqui o nome do aluno">
+                <input class="inputStudentName" oninput="searchStudentCard()" type="text" placeholder="Digite aqui o nome do aluno">
             </section>
             <!--cards html-->
             <section id="students-container" class="students">
 
-
+                
             </section>
         </div>
+
         <br><br><br>
-        <section class="default-container" id="courses-container">
+
+        <div class="default-container" id="courses-container">
             <h2 class="title">Planos de Aula Recomendados</h2>
             </a>
-        </section>
+        </div>
     </main>
 
     <footer>
