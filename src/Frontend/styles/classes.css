@@ -48,6 +48,28 @@
 
 /* Cards */
 
+.delete-class{
+    width: 50px;
+    height: 30px;
+    border-radius: 12px;
+    border: none;
+    background-color: #960840;
+    cursor: pointer;
+    color: white;
+
+    z-index: 1000;
+}
+
+.delete-class:hover{
+    filter: opacity(0.8);
+}
+
+.cardHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .card {
   width: 300px;
   background-color: #dedddd;
@@ -56,13 +78,8 @@
   margin: 10px;
   box-sizing: border-box;
   transition: background-color 0.3s;
-}
-
-.card:hover {
-  background-color: #c5c5c5;
   cursor: pointer;
 }
-  
   
   /* Progress Bar */
   .progress-bar-default {

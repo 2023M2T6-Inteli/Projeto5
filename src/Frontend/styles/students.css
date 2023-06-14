@@ -141,6 +141,27 @@
     font-size: 25px;
     margin-bottom: 20px;
 }
+
+.delete-student{
+    width: 50px;
+    height: 30px;
+    border-radius: 12px;
+    border: none;
+    background-color: #960840;
+    cursor: pointer;
+    color: white
+}
+
+.delete-student:hover{
+    filter: opacity(0.8);
+}
+
+.cardHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .student-call-number {
     font-size: 25px;
     margin-bottom: 20px;
@@ -169,8 +190,4 @@
     flex-direction: column;
     flex-wrap: wrap;
     cursor: pointer;
-}
-
-.card:hover{
-    opacity: 0.8;
 }
