@@ -4,6 +4,24 @@ body, html {
     justify-content: center;
 }
 
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#logoName{
+    margin-top: 10px;
+    width: 20%;
+    height: 100%;
+}
+
+#logo{
+    margin-top: 30px;
+    width: 10%;
+    height: 10%;
+}
 
 .width100 {
     width: 100%;
@@ -42,7 +60,7 @@ body, html {
 .welcome{
     font-size: 24px;
     color: #fff;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 .write-login{
         font-size: 16px;
