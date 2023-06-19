@@ -20,7 +20,7 @@ function postStudentNotes(db, params) {
         if (err) {
           reject(err);
         } else {
-          resolve("Nota inserida");
+          resolve("Anotação inserida");
         }
       }
     )
@@ -52,7 +52,7 @@ function putStudentNotes(db, params) {
         if (err) {
           reject(err);
         } else {
-          resolve("Nota atualizada");
+          resolve("Anotação atualizada");
         }
       });
     })
@@ -68,7 +68,7 @@ function removeStudentNotes(db, studentNotes_id) {
         if (err) {
           reject(err);
         }
-        resolve("Nota removida");
+        resolve("Anotação removida");
       }
     );
   });
