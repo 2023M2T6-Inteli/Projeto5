@@ -106,7 +106,7 @@ function createDivs(students) {
         // Ação a ser executada quando a div for clicada
         const studentId = div.dataset.classId; // Obtém o ID do aluno clicada
         // Redirecionar para a página students.html com o ID do aluno como parâmetro na URL
-        const url = `students.html?id=${encodeURIComponent(id)}`;
+        const url = `studentsNotes.html?id=${encodeURIComponent(id)}`;
         window.location.href = url;
       });
 

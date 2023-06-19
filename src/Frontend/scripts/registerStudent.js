@@ -13,10 +13,8 @@ console.log(id);
 
 function register() {
   const studentName = document.getElementById("studentName").value;
-  console.log(studentName);
 
   const studentNumber = document.getElementById("studentNumber").value;
-  console.log(studentNumber);
 
   const data = new URLSearchParams();
   data.append("name", studentName);
