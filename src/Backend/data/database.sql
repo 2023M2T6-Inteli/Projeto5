@@ -24,30 +24,20 @@ CREATE TABLE classes (
 CREATE TABLE student_grades (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	student_id integer,
-	lesson_id integer,
 	grade1 integer,
 	grade2 integer,
 	grade3 integer,
 	grade4 integer,
 	grade5 integer,
-	FOREIGN KEY (student_id) REFERENCES students(id),
-	FOREIGN KEY (lesson_id) REFERENCES lessons(id)
+	FOREIGN KEY (student_id) REFERENCES students(id)
 );
 
-CREATE TABLE lessons (
-	id integer PRIMARY KEY AUTOINCREMENT,
-	class_id integer,
-	date date,
-	FOREIGN KEY (class_id) REFERENCES classes(id)
-);
 
 CREATE TABLE student_notes (
 	id integer PRIMARY KEY AUTOINCREMENT,
 	student_id integer,
 	note text,
-	lesson_id integer,
-	FOREIGN KEY (student_id) REFERENCES students(id),
-	FOREIGN KEY (lesson_id) REFERENCES lessons(id)
+	FOREIGN KEY (student_id) REFERENCES students(id)
 );
 
 CREATE TABLE codes (
