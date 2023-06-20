@@ -12,9 +12,15 @@ header {
     height: 80px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     background-color: #960840;
+}
+
+header > button {
+    border-color: transparent;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 header > h1 {
