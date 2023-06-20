@@ -20,18 +20,14 @@ function login() {
         // Tratar a resposta do servidor
         console.log(result);
         if (result) {
-        
           // Armazenar o token no localStorage
           localStorage.setItem("token", result);
           // Redirecionar para a página de perfil ou qualquer outra página desejada
           window.location.href = "classes.html";
-        } else {
-          alert("Email e/ou senha incorretos.");
-        }
+        } 
       })
-      .catch((error) => {
-        console.error(error);
-        alert("Ocorreu um erro ao processar a solicitação.");
+      .catch(() => {
+        alert("Email e/ou senha incorretos.");
       });
   }
   
