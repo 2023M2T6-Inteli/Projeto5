@@ -92,3 +92,170 @@ width: 300px;
     background-color: rgb(0, 207, 131, 0.8);
     width: 60%;
 };
+
+/* cards */
+
+.students {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+
+.icon-class {
+    transform: scale(1);
+    /* transform-origin: top left; /* Muda o ponto de origem para o canto superior esquerdo */
+}
+
+
+
+.student-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.priority {
+    display: inline-block;
+    border-radius: 30px;
+    width: 60px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.high {
+    background-color: #ff0000;
+}
+
+.medium {
+    background-color: #FDD835;
+}
+
+.competency {
+    width: 100%;
+    height: 20px;
+}
+
+/* Buttons */
+.button {
+    width: 200px;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #ffffff;
+    background-color: #960840;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    margin-top: 15px;
+}
+
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+/* Cards de Cursos */
+
+.title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.course-card {
+    width: 300px;
+    border: 3px solid black;
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+.course-card:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.course-card img {
+    width: 100%;
+    height: auto;
+}
+
+.course-card-title {
+    font-weight: bold;
+    margin-top: 5px;
+    color: black;
+    margin-bottom: 2px;
+}
+
+ /* Progress Bar */
+.progress-bar-default {
+    border-radius: 0 12px 12px 0;
+    height: 20px;
+    margin-right: auto;
+}
+  /* Cards */
+.student-name {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.delete-student{
+    width: 50px;
+    height: 30px;
+    border-radius: 12px;
+    border: none;
+    background-color: #960840;
+    cursor: pointer;
+    color: white
+}
+
+.delete-student:hover{
+    filter: opacity(0.8);
+}
+
+.cardHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.student-call-number {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.competencies {
+    display: flex;
+    flex-direction: column;
+}
+  
+.competency {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-direction: column;
+    margin-top: 2px;
+    margin-bottom: 25px;
+}
+  
+.competency p {
+    margin-right: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}

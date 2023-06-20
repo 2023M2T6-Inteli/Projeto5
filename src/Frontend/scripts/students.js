@@ -102,14 +102,6 @@ function createDivs(students) {
       div.className = "card";
       div.dataset.classId = id; // Adiciona o ID invisível como atributo data
 
-      div.addEventListener("click", () => {
-        // Ação a ser executada quando a div for clicada
-        const studentId = div.dataset.classId; // Obtém o ID do aluno clicada
-        // Redirecionar para a página students.html com o ID do aluno como parâmetro na URL
-        const url = `studentsNotes.html?id=${encodeURIComponent(id)}`;
-        window.location.href = url;
-      });
-
       const cardHeader = document.createElement("div")
       cardHeader.className = "cardHeader"
   
@@ -155,12 +147,36 @@ function createDivs(students) {
 
         div.appendChild(p);
         div.appendChild(competencyDiv);
+
+        div.addEventListener("click", () => {
+          // Ação a ser executada quando a div for clicada
+          const studentId = div.dataset.classId; // Obtém o ID do aluno clicado
+          const studentName = h2.textContent; // Obtém o nome do aluno clicado
+
+          // Cria um objeto com os dados do aluno
+          const studentData = {
+            id: studentId,
+            name: studentName,
+            // adicione outros dados do aluno que você queira incluir
+          };
+
+          // Serializa os dados do aluno em uma string JSON
+          const studentDataString = JSON.stringify(studentData);
+
+          // Codifica a string JSON para ser incluída na URL
+          const encodedStudentData = encodeURIComponent(studentDataString);
+
+          // Redirecionar para a página studentsNotes.html com os dados do aluno como parâmetro na URL
+          const url = `studentsNotes.html?data=${encodedStudentData}`;
+          window.location.href = url;
+        });
       });
 
       container.appendChild(div);
     } catch (error) {
       console.error("Error creating divs:", error);
     }
+    
   });
 }
 

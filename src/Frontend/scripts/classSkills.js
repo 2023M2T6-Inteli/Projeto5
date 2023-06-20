@@ -45,7 +45,7 @@ function getClassIdFromUrl() {
       console.log(data); // Aqui você pode lidar com a resposta do back-end
       // Faça qualquer ação necessária após a postagem das notas
       // Por exemplo, redirecionar para outra página:
-      // window.location.href = "classes.html";
+      window.location.href = "classes.html";
     })
     .catch(error => {
       console.error(error);
