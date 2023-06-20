@@ -16,7 +16,6 @@ async function postGrades(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   const result = await studentModel.postGrade(req.db, [
     req.body.student_id,
-    req.body.lesson_id,
     req.body.grade1,
     req.body.grade2,
     req.body.grade3,
@@ -38,7 +37,6 @@ async function putGrades(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   const result = await studentModel.putGrade(req.db, [
     req.body.student_id,
-    req.body.lesson_id,
     req.body.grade1,
     req.body.grade2,
     req.body.grade3,
@@ -73,7 +71,6 @@ async function postStudentGrade(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   const result = await studentModel.postStudentGrade(req.db, [
     req.params.student_id,
-    req.body.lesson_id,
     req.body.grade1,
     req.body.grade2,
     req.body.grade3,
@@ -88,7 +85,6 @@ async function postClassGrade(req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   console.log(req.body);
   const result = await studentModel.postClassGrade(req.db, [
-    1,
     req.body.grade1,
     req.body.grade2,
     req.body.grade3,

@@ -42,13 +42,17 @@ function getClassIdFromUrl() {
     })
     .then(response => response.json())
     .then(data => {
+<<<<<<< HEAD
       console.log(data); // Aqui você pode lidar com a resposta do back-end
       // Faça qualquer ação necessária após a postagem das notas
       // Por exemplo, redirecionar para outra página:
       window.location.href = "classes.html";
+=======
+      console.log(data); 
+      window.location.href = `students.html?id=${encodeURIComponent(classId)}`;
+>>>>>>> 1bd202e40fd43acf54414686eb67da0a7d7ca7ea
     })
     .catch(error => {
       console.error(error);
-      // Lide com erros caso ocorram
     });
   }
