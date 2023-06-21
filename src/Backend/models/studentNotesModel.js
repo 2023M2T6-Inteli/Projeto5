@@ -14,7 +14,7 @@ function getAllStudentNotes(db) {
 function postStudentNotes(db, params) {
   return new Promise((resolve, reject) =>
     db.run(
-      "INSERT INTO student_notes (student_id, note, lesson_id) VALUES (?, ?, ?)",
+      "INSERT INTO student_notes ( student_id, note) VALUES (?, ?)",
       params,
       (err) => {
         if (err) {

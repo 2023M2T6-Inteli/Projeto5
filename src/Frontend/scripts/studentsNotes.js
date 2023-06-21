@@ -100,3 +100,48 @@ async function initialize() {
 
 // Chama a função principal para iniciar o processo
 document.addEventListener("DOMContentLoaded", initialize);
+
+function postNotes(){
+  const elementTextArea = document.getElementById('notes');
+  const text = elementTextArea.value;
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const id  = JSON.parse(searchParams.get("data")).id;
+
+  console.log(id);
+
+  const data = new URLSearchParams();
+  data.append('student_id', id);
+  data.append('note', text);
+  
+  fetch("http://localhost:3000/studentNotes", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: data.toString(),
+  })
+   .then((response) => response.json())
+   .then((result) => {
+
+      window.location.href = "students.html"
+   })
+   .catch((error) => {
+      console.error(error);
+      alert("Ocorreu um erro ao salvar as anotações.");
+      window.location.href = "students.html";
+   })
+}
+
+
+
+//function getStudentNotes(notes){
+  
+  // return text;
+//}
+
+// function createDivs(n){
+  // const divNotes = document.getElementById('#notes-container');
+
+  // divNotes.textContent = ;
+// }

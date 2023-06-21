@@ -17,7 +17,6 @@ async function postStudentNotes(req, res) {
   const result = await studentNotesModel.postStudentNotes(req.db, [
     req.body.student_id,
     req.body.note,
-    req.body.lesson_id,
   ]);
   res.json(result);
 }
