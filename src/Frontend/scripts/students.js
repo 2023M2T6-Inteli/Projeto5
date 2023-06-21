@@ -8,7 +8,6 @@ function getClassIdFromUrl() {
 }
 
 const id = getClassIdFromUrl()
-console.log(id)
 
 async function fetchStudentsByClassId() {
   try {
@@ -19,7 +18,6 @@ async function fetchStudentsByClassId() {
       throw new Error(`Request failed with status ${response.status}`);
     }
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching students:", error);
@@ -77,7 +75,7 @@ function deleteStudent(classId) {
 async function fetchAverageClassGrades(classId) {
   try {
     const response = await fetch(
-      `http://localhost:3000/studentGrades/getAvg/${classId}`
+      `http://localhost:3000/studentGrades/student/${classId}`
     );
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);
@@ -93,10 +91,11 @@ async function fetchAverageClassGrades(classId) {
 function createDivs(students) {
   const container = document.querySelector("#students-container");
 
-  students.forEach(async (studentsData) => {
+  students.forEach(async (studentsData, studentIndex) => {
     const { id, class_id, name, call_number } = studentsData;
     try {
       const averages = await fetchAverageClassGrades(id);
+      console.log(name, averages)
 
       const div = document.createElement("div");
       div.className = "card";
@@ -131,17 +130,23 @@ function createDivs(students) {
       ];
       const competencyColors = ["yellow", "blue", "red", "green", "grey"];
 
-      competencyNames.forEach((competency, index) => {
+      competencyNames.forEach((competency, competencyIndex) => {
         const competencyDiv = document.createElement("div");
-        competencyDiv.className = `competency ${competencyColors[index]}-50`;
+        competencyDiv.className = `competency ${competencyColors[competencyIndex]}-50`;
 
         const p = document.createElement("p");
         p.textContent = competency;
 
         const progressBarDiv = document.createElement("div");
-        progressBarDiv.className = `${competencyColors[index]}-100 progress-bar-default`;
+        progressBarDiv.className = `${competencyColors[competencyIndex]}-100 progress-bar-default`;
 
-        const percentage = averages[`average_grade${index + 1}`] || 0;
+        const studentAvg = averages[0]
+        console.log('studentAvg' + studentAvg )
+        console.log(competencyIndex)
+        const percentage = studentAvg["average_grade" + (competencyIndex + 1)]
+        console.log('percentage' + percentage)
+
+
         progressBarDiv.style.width = `${percentage * 10}%`;
         competencyDiv.appendChild(progressBarDiv);
 
