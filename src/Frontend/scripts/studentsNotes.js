@@ -9,10 +9,12 @@ function getStudentDataFromUrl() {
   return JSON.parse(decodedStudentData);
 }
 
-async function fetchAverageClassGrades(classId) {
+async function fetchAverageClassGrades() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const id  = JSON.parse(searchParams.get("data")).id;
   try {
     const response = await fetch(
-      `http://localhost:3000/studentGrades/getAvg/${classId}`
+      `http://localhost:3000/studentGrades/student/${id}`
     );
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);
@@ -75,9 +77,16 @@ async function createDivs(studentData) {
       const progressBarDiv = document.createElement("div");
       progressBarDiv.className = `${competencyColors[index]}-100 progress-bar-default`;
 
-      const percentage = averages[`average_grade${index + 1}`] || 0;
-      progressBarDiv.style.width = `${percentage * 10}%`;
-      competencyDiv.appendChild(progressBarDiv);
+      const studentAvg = averages[0]
+        console.log('studentAvg' + studentAvg )
+        const percentage = studentAvg["average_grade" + (index + 1)]
+        console.log('percentage' + percentage)
+
+        progressBarDiv.style.width = `${percentage * 10}%`;
+        competencyDiv.appendChild(progressBarDiv);
+
+        div.appendChild(p);
+        div.appendChild(competencyDiv);
 
       div.appendChild(p);
       div.appendChild(competencyDiv);
