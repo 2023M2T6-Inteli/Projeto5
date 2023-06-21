@@ -83,9 +83,10 @@ async function fetchAverageClassGrades(classId) {
       throw new Error(`Request failed with status ${response.status}`);
     }
     const data = await response.json();
+    console.log(data)
     return data;
   } catch (error) {
-    console.error("Error fetching average class grades:", error);
+    console.error("Error fetching average student grades:", error);
     throw error;
   }
 }
@@ -96,7 +97,8 @@ function createDivs(students) {
   students.forEach(async (studentsData) => {
     const { id, class_id, name, call_number } = studentsData;
     try {
-      const averages = await fetchAverageClassGrades(id);
+      const averages = await fetchAverageClassGrades(class_id);
+      console.log(averages);
 
       const div = document.createElement("div");
       div.className = "card";
@@ -132,6 +134,7 @@ function createDivs(students) {
       const competencyColors = ["yellow", "blue", "red", "green", "grey"];
 
       competencyNames.forEach((competency, index) => {
+        
         const competencyDiv = document.createElement("div");
         competencyDiv.className = `competency ${competencyColors[index]}-50`;
 

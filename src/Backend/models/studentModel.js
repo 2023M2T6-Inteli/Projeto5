@@ -2,7 +2,7 @@ const db = require("sqlite3");
 
 function getAllStudent(db) {
   return new Promise((resolve, reject) => {
-    db.all("SELECT * FROM students ORDER BY id ASC", (err, rows) => {
+    db.all("SELECT * FROM students ORDER BY id ASC AND name", (err, rows) => {
       if (err) {
         reject(err);
       }

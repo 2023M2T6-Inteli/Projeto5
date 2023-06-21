@@ -40,11 +40,11 @@ function getGrade(db, grade_id) {
   });
 }
 
-function putGrade(db, params) {
+function putClassGrades(db, params) {
   return new Promise((resolve, reject) => {
     db.serialize(() => {
       const sqlQuery =
-        "UPDATE student_grades SET student_id = ?, grade1 = ?, grade2 = ?, grade3 = ?, grade4 = ?, grade5 = ?, WHERE id = ?";
+        "UPDATE student_grades SET class_id = ?, grade1 = ?, grade2 = ?, grade3 = ?, grade4 = ?, grade5 = ?, WHERE id = ?";
 
       db.run(sqlQuery, params, (err) => {
         if (err) {
@@ -92,6 +92,29 @@ function getAverageClassGrades(db, class_id) {
   });
 }
 
+function getAverageStudentGrades(db, student_id) {
+  return new Promise((resolve, reject) => {
+    const sqlQuery = `SELECT 
+        AVG(grade1) AS average_grade1,
+        AVG(grade2) AS average_grade2,
+        AVG(grade3) AS average_grade3,
+        AVG(grade4) AS average_grade4,
+        AVG(grade5) AS average_grade5
+      FROM student_grades
+      JOIN students ON student_grades.student_id = students.id
+      WHERE students.student_id = ?`;
+
+      db.get(sqlQuery, [student_id], (err, row) => {
+        if(err) {
+          reject(err);
+        }
+        else {
+          resolve(row)
+        }
+      })
+  })
+}
+
 function postStudentGrade(db, params) {
   return new Promise((resolve, reject) => {
     db.run(
@@ -135,9 +158,10 @@ module.exports = {
   getAllGrade,
   postGrade,
   getGrade,
-  putGrade,
+  putClassGrades,
   removeGrade,
   getAverageClassGrades,
+  getAverageStudentGrades,
   postStudentGrade,
   postClassGrade
 };

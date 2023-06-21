@@ -29,7 +29,7 @@ function getClassIdFromUrl() {
     const classId = getClassIdFromUrl(); 
 
     const data = new URLSearchParams(grades).toString();
-    token = getTokenFromLocalStorage();
+    const token = getTokenFromLocalStorage();
     console.log(data);
 
     fetch(`http://localhost:3000/studentGrades/class/${classId}`, {
@@ -45,7 +45,6 @@ function getClassIdFromUrl() {
       console.log(data); // Aqui você pode lidar com a resposta do back-end
       // Faça qualquer ação necessária após a postagem das notas
       // Por exemplo, redirecionar para outra página:
-      console.log(data); 
       window.location.href = `students.html?id=${encodeURIComponent(classId)}`;
     })
     .catch(error => {
