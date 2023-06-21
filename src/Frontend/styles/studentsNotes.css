@@ -53,7 +53,7 @@ width: 300px;
 }
 
 .skills-avaliation{
-    font-size: 15px;
+    font-size: 20px;
     font: normal;
     font-weight: 200px;
 }
@@ -259,3 +259,4 @@ width: 300px;
     flex-direction: column;
     flex-wrap: wrap;
 }
+
