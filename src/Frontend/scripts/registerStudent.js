@@ -3,14 +3,10 @@ function getClassIdFromUrl() {
   return searchParams.get("id");
 }
 
-//pegar id da rota e mandar pro back
-// pegar o numero do aluno
-//ir testando a rota
-// talvez seja no backend testa 
-
 const id = getClassIdFromUrl();
 console.log(id);
 
+//Adicionar o aluno no banco de dados
 function register() {
   const studentName = document.getElementById("studentName").value;
 
