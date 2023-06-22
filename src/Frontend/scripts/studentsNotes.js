@@ -142,6 +142,14 @@ function postNotes(){
    })
 }
 
+// Função para adicionar uma aula
+function addLesson() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const id  = JSON.parse(searchParams.get("data")).id;
+  const url = `studentsSkills.html?id=${encodeURIComponent(id)}`;
+  window.location.href = url;
+}
+
 
 
 //function getStudentNotes(notes){
