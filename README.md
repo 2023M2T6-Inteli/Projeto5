@@ -51,16 +51,26 @@ Aqui estão todas as instruções necessárias para a instalação de todos os p
 
 1. Baixar e instalar o Node.js: [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
 2. Clone o repositório em questão.
-3. No modo administrador, abra o "prompt de comando" ou o "terminal" e, após, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
+3. Criar um file ".env" dentro de backend, definindo a porta e seu JWT, um token para a segurança do usuário na aplicação. Segue um exemplo de um arquivo .env para montar o seu:
+   
+```terminal
+PORT=3000
+JWT_SECRET='secret'
+```
+
+4. No modo administrador, abra o "prompt de comando" ou o "terminal" e, após, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
 
 ```terminal
 npm install
 ```
 
 Isso instalará todas as dependências definidas no arquivo package.json que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
-node /app.js
 
-4. Agora você pode acessar a aplicação através do link [http://localhost:3000/](http://localhost:3000/).
+```terminal
+node app.js
+```
+
+5. Agora você pode acessar a aplicação através do link [http://localhost:3000/](http://localhost:3000/).
 O servidor está online.
 
 ## Bibliotecas Utilizadas
