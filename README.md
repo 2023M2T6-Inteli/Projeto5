@@ -17,6 +17,9 @@
 - [Raul Rezende Szpak](https://www.linkedin.com/in/raul-rezende-szpak-642079186/)
 - [Vitto Mazeto](https://www.linkedin.com/in/vitto-mazeto/)
 
+- ## Orientador:
+- <a href="https://www.linkedin.com/in/fabiana-martins-de-oliveira-8993b0b2/">Fabiana Martins de Oliveira</a>
+
 ## 📝 Descrição
 
 A solução proposta é o desenvolvimento de uma ferramenta web-app chamada Nova Professora, que funciona como um diário digital para professores registrarem e acompanharem informações sobre alunos e turmas. A ferramenta utiliza uma interface baseada nos conceitos de "pipes" e "cartões" do kanban digital, e incorpora rituais ágeis para facilitar a organização dos professores. Além disso, oferece feedbacks rápidos e precisos sobre o desempenho dos alunos, com um sistema inteligente que mapeia habilidades e defasagens individuais, sugerindo conteúdos adequados. O objetivo principal é fornecer uma solução ágil e mensurável para professores, permitindo uma avaliação efetiva das necessidades e avanços dos alunos. A ferramenta visa melhorar a qualidade da educação infantil e contribuir para o desenvolvimento integral dos alunos.
